@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("Another");
+        AudioManager.Instance.ButtonHitSoundEffect();
     }
 
     public void QuitGame()
@@ -33,4 +34,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("Mute", 0);
 
     }
+
+
+    
 }
