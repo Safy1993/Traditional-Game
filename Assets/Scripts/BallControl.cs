@@ -16,12 +16,22 @@ public class BallControl : MonoBehaviour
     {
         if (Input.GetKeyDown("z"))
         {
-            zForce += 100; 
+            zForce += 50; 
         }
 
         if (Input.GetKeyDown("x"))
         {
-            zForce += 10;
+            zForce -= 50;
+        }
+
+        if (Input.GetKey("a"))
+        {
+            transform.Rotate(0,-2,0);
+        }
+
+        if (Input.GetKey("d"))
+        {
+            transform.Rotate(0, 2, 0);
         }
     }
 
@@ -29,5 +39,10 @@ public class BallControl : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddRelativeForce(0,0, zForce);
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
