@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallControl : MonoBehaviour
 {
     public float zForce = 0;
+    public GameObject winText;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +48,12 @@ public class BallControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+
+        if (other.gameObject.tag == "hole")
+        {
+            winText.SetActive(true);
+        }
     }
+    
+
 }
