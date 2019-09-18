@@ -17,22 +17,32 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("Another");
-        AudioManager.Instance.ButtonHitSoundEffect();
+        HitButtonSound();
+
+
     }
 
-    public void QuitGame()
+    public void ExitGame()
     {
+   
         Debug.Log("Quit!");
         Application.Quit();
+     
     }
 
     public void MuteSounds()
     {
+   
         if (audioToggle.isOn)
             PlayerPrefs.SetInt("Mute", 1);
+           
         else
             PlayerPrefs.SetInt("Mute", 0);
-
+        
+    }
+    public void HitButtonSound()
+    {
+        AudioManager.Instance.HitSoundEffect();
     }
 
 
