@@ -17,8 +17,18 @@ public class BallControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   
+    void FixedUpdate()
     {
+
+        //if (OVRInput.Get(OVRInput.,))
+        //{
+
+
+
+        //}
+
+
         if (Input.GetKeyDown("z"))
         {
             zForce += 50; 
@@ -44,7 +54,10 @@ public class BallControl : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddRelativeForce(0,0, zForce);
 
+        
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -55,5 +68,8 @@ public class BallControl : MonoBehaviour
         }
     }
     
+
+
+
 
 }
