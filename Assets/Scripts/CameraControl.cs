@@ -17,9 +17,9 @@ public class CameraControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector3 TargetPosition = Target.position + Target.TransformVector(offset);
+        Vector3 TargetPosition = Target.position + Vector3.up * offset.y + Vector3.forward * offset.z;
 
 
         Vector3 TargetVector = TargetPosition - transform.position;

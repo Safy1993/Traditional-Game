@@ -5,11 +5,14 @@ using UnityEngine;
 public class paddleControl : MonoBehaviour
 {
 
-    float yRotat;
+    float xRotat;
 
     public Transform ball;
+  
+    float zForce;
+    Vector3 newPosition;
 
-    float zForce; 
+    float speed = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,40 +23,33 @@ public class paddleControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (Input.GetKeyDown (KeyCode.Space))
         {
 
-            yRotat = -36;
-            transform.Rotate(yRotat, 0, 0); 
+            xRotat = -36;
+            transform.Rotate(xRotat, 0, 0);
+            
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-
-            yRotat = 36;
-            transform.Rotate(yRotat, 0, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            transform.Translate(-0.5f, 0, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            transform.Translate(0.5f, 0,0 );
+           
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            transform.LookAt(ball.position);
+            //if ((transform.position - ball.position).magnitude > 0.1f)
+            //{
+                transform.Translate(0, 0, speed * Time.deltaTime);
+            //}
         }
 
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            transform.Translate( 0,0, 0.5f);
-        }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            transform.Translate(0, 0,- 0.5f);
-        }
+     
+
+       
+
+        
     } 
 
 
@@ -62,10 +58,14 @@ public class paddleControl : MonoBehaviour
 
         if (collision.gameObject.tag == "ball")
         {
-            zForce = 10;
+            zForce = 100;
             ball.GetComponent<Rigidbody>().AddRelativeForce(0, 0, zForce);
-        }
 
+          
+
+
+        }
+      
         zForce = 0;
     }
 }
