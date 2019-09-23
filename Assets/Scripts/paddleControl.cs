@@ -5,14 +5,17 @@ using UnityEngine;
 public class paddleControl : MonoBehaviour
 {
 
-    float xRotat;
+    float xRotat=-50.0f;
 
     public Transform ball;
-  
-    float zForce;
+    float ballSpeed = 20.0f;
     Vector3 newPosition;
 
-    float speed = 10.0f;
+    float paddleSpeed = 10.0f;
+
+  
+    Vector3 lookDirection;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -23,33 +26,53 @@ public class paddleControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (Input.GetKeyDown (KeyCode.Space))
-        {
-
-            xRotat = -36;
-            transform.Rotate(xRotat, 0, 0);
-            
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-           
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            transform.LookAt(ball.position);
-            //if ((transform.position - ball.position).magnitude > 0.1f)
-            //{
-                transform.Translate(0, 0, speed * Time.deltaTime);
-            //}
-        }
-
-
-
-     
 
        
+        lookDirection = ((ball.position - transform.position) - new Vector3(0, 0, 1f)).normalized;
 
-        
+        transform.Translate(lookDirection * Time.deltaTime * paddleSpeed);
+
+        if (Input.GetKeyDown (KeyCode.Space))
+        {
+            transform.Rotate(xRotat, 0, 0);   
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+       else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+
+            transform.Translate(Vector3.left * paddleSpeed * Time.deltaTime);
+            transform.LookAt(ball);
+
+        }
+
+
+       else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector3.right * paddleSpeed * Time.deltaTime);
+            transform.LookAt(ball);
+
+        }
+
+      else  if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(Vector3.forward * paddleSpeed * Time.deltaTime);
+            transform.LookAt(ball);
+
+        }
+
+     else   if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(Vector3.back * paddleSpeed * Time.deltaTime);
+            transform.LookAt(ball);
+
+        }
+
+
     } 
 
 
@@ -58,14 +81,11 @@ public class paddleControl : MonoBehaviour
 
         if (collision.gameObject.tag == "ball")
         {
-            zForce = 100;
-            ball.GetComponent<Rigidbody>().AddRelativeForce(0, 0, zForce);
-
+        
+            ball.GetComponent<Rigidbody>().AddForce(transform.forward * ballSpeed ,ForceMode.Force);
           
-
-
         }
       
-        zForce = 0;
+      
     }
 }
