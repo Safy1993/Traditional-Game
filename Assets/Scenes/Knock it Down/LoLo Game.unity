@@ -1067,6 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 909087962}
+  - component: {fileID: 909087963}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1088,6 +1089,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &909087963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909087961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89205cd5100d08443bbfe27270a509dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 2026586929}
+  Target: {fileID: 204995505}
+  ballForce: 300
+  readyToShoot: 0
+  totalBalls: 5
+  currentLevel: 0
+  casSetGRB:
+  - {fileID: 707670112}
+  - {fileID: 1244358927}
+  - {fileID: 1376778938}
+  - {fileID: 1804821711}
 --- !u!1001 &1064002817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1667,7 +1691,6 @@ GameObject:
   - component: {fileID: 2026586933}
   - component: {fileID: 2026586932}
   - component: {fileID: 2026586935}
-  - component: {fileID: 2026586934}
   - component: {fileID: 2026586936}
   - component: {fileID: 2026586937}
   - component: {fileID: 2026586931}
@@ -1750,22 +1773,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026586929}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2026586934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026586929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89205cd5100d08443bbfe27270a509dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 2026586929}
-  Target: {fileID: 204995505}
-  ballForce: 300
-  readyToShoot: 0
 --- !u!54 &2026586935
 Rigidbody:
   m_ObjectHideFlags: 0

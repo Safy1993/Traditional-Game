@@ -32,8 +32,9 @@ public class Ball : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         transform.position = spawnPos;
-        GetComponent<Animator>().enabled = true;
+        this.GetComponent<Animator>().enabled = true;
         gameObject.SetActive(true);
+        StartCoroutine(SetReadyToShoot());
 
     } 
     
