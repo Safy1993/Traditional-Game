@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
             ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
             readyToShoot = false;
             totalBalls--;
+            UIManager.instance.UpdateBallIcons();
+                
+                ;
             if (totalBalls <= 0)
             {
                 //check gameoevr
