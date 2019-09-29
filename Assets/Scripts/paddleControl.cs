@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,12 +28,7 @@ public class paddleControl : MonoBehaviour
     {
 
         
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Debug.Log("upArrow KeyDown");
-            transform.GetChild(0).Rotate(xRotat, 0, 0,Space.Self);
-           
-        }
+
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             Debug.Log("upArrow KeyUp");
@@ -55,7 +51,10 @@ public class paddleControl : MonoBehaviour
 
     }
 
-
+    internal void Shoot()
+    {
+        transform.GetChild(0).Rotate(xRotat, 0, 0, Space.Self);
+    }
 
     public void MovePlayer()
     {
@@ -63,5 +62,6 @@ public class paddleControl : MonoBehaviour
         transform.position = ballpos.position;
     }
 
+   
 }
 

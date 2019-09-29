@@ -21,7 +21,8 @@ public class ScenesManager : MonoBehaviour
     {
 
         SceneManager.LoadScene("GameL1");
-        PutterForce.instance.totalBalls = 5;
-        UIMang.instance.UpdateBallIcons();
+        //PutterForce.instance.totalBalls = 5;
+        //UIMang.instance.
+
     }
 }

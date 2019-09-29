@@ -39,7 +39,7 @@ public class UIMang : MonoBehaviour
 
     public void UpdateBallIcons()
     {
-        int ballCount = PutterForce.instance.totalBalls;
+        int ballCount = LevelManager.Instance.totalBalls;
 
         for (int i = 0; i < 5; i++)
         {
@@ -51,7 +51,10 @@ public class UIMang : MonoBehaviour
             {
                 allBallImg[i].GetComponent<Image>().color =Color.gray ;
             }
+
+
         }
+
     }
 
 

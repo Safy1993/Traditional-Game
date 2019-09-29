@@ -9,36 +9,32 @@ public class PutterForce : MonoBehaviour
 {
     int numOfShooting;
     public Text numShootingText;
-    public int totalBalls = 5;
-    public static PutterForce instance;
+    public Text GameOverText;
     public GameObject ball;
+
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-
-        else
-        {
-            Destroy(this);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
-            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * 50);
+            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * 70);
+
             numOfShooting++;
 
-            totalBalls--;
+
+            LevelManager.Instance.totalBalls--;
             UIMang.instance.UpdateBallIcons();
 
 
-            if (totalBalls >= 5)
+            if (numOfShooting > 5)
             {
-                Destroy(ball);
+                GameOverText.text = "Game Over";
+                GameOverText.enabled = true; 
+
+
             }
 
         }
