@@ -23,6 +23,7 @@ public class Can : MonoBehaviour
         {
             hasFallen=true;
             GameManager.instance.GroundFallenCheck();
+            UIManager.instance.UpdateScore();
         }
 
     }

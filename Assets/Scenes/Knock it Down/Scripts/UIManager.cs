@@ -9,6 +9,13 @@ public class UIManager : MonoBehaviour
     public Sprite enabledBallImg;
     public Sprite diabledBallImg;
 
+    public GameObject backFg;
+    public GameObject GameUI,HomeUI;
+    public GameObject gameScence;
+
+    public int score;
+    public Text scoreText;
+
 
     void Awake()
     {
@@ -24,6 +31,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HomeUI.SetActive(true);
+        gameScence.SetActive(false);
         
     }
 
@@ -48,5 +57,41 @@ public class UIManager : MonoBehaviour
             }
 
         }
+    }
+    
+    public void StartButton()
+    {
+        StartCoroutine(StartRoutine());
+
+    }
+
+    IEnumerator StartRoutine()
+    {
+        ShowBlackFade();
+        yield return new WaitForSeconds(0.5f);
+        HomeUI.SetActive(false);
+        gameScence.SetActive(true);
+        GameUI.SetActive(true);
+        GameManager.instance.readyToShoot = true;
+        
+
+    }
+    public void ShowBlackFade()
+    {
+        StartCoroutine(FadeRoutine());
+    }
+
+    IEnumerator FadeRoutine()
+    {
+        backFg.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        backFg.SetActive(false);
+
+    }
+
+    public void UpdateScore()
+    {
+        score += 1;
+        scoreText.text = score.ToString();
     }
 }

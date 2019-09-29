@@ -12,7 +12,13 @@ public class GameManager : MonoBehaviour
     public bool readyToShoot;
     public int totalBalls;
     public int currentLevel;
+    public GameObject[] allLevels;
     public GameObject[] casSetGRB;
+
+    public Ball ballScript;
+    public bool gameHasStarted;
+
+
     // Start is called before the first frame update
 
     void Awake()
@@ -29,7 +35,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        readyToShoot = true;
+        gameHasStarted = true;
+        //readyToShoot = true;
 
     }
 
@@ -57,7 +64,7 @@ public class GameManager : MonoBehaviour
             totalBalls--;
             UIManager.instance.UpdateBallIcons();
                 
-                ;
+                
             if (totalBalls <= 0)
             {
                 //check gameoevr
@@ -81,23 +88,50 @@ public class GameManager : MonoBehaviour
         {
             //Load next Level
             print("Load Next Level");
+            LoadNextLevel();
 
         }
 
     }
 
-    public bool AllGrounded()
+    bool AllGrounded()
     {
-        Transform currentSet = casSetGRB[currentLevel].transform;
-        foreach(Transform t in currentSet)
+        Transform canSet = allLevels[currentLevel].transform;
+        foreach (Transform t in canSet)
         {
-            if (t.GetComponent<Can>().hasFallen==false)
+            if (t.GetComponent<Can>().hasFallen == false)
             {
                 return false;
             }
-        
         }
-         return true;
+
+        return true;
+    }
+
+    public void LoadNextLevel()
+    {
+        if (gameHasStarted)
+        {
+            StartCoroutine(LoadNextLevelRoutine());
+
+        }
+    }
+    IEnumerator LoadNextLevelRoutine()
+    {
+        Debug.Log("Loding next level");
+        yield return new WaitForSeconds(1.5f);
+        UIManager.instance.ShowBlackFade();
+        readyToShoot = false;
+        allLevels[currentLevel].SetActive(false);
+        currentLevel++;
+
+        if (currentLevel > allLevels.Length) currentLevel = 0;
+        yield return new WaitForSeconds(1.0f);
+        allLevels[currentLevel].SetActive(true);
+        UIManager.instance.UpdateBallIcons();
+        ballScript.RepoitionBall();
+
+
     }
 
 }
