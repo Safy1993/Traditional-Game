@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Ball ballScript;
     public bool gameHasStarted;
 
+    public int shotedBall;
+
 
     // Start is called before the first frame update
 
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
             //shoot the ball
             ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
             readyToShoot = false;
+            shotedBall++;
             totalBalls--;
             UIManager.instance.UpdateBallIcons();
                 
@@ -127,6 +130,8 @@ public class GameManager : MonoBehaviour
 
         if (currentLevel > allLevels.Length) currentLevel = 0;
         yield return new WaitForSeconds(1.0f);
+        UIManager.instance.UpdateScoreMultiplier();
+        shotedBall = 0;
         allLevels[currentLevel].SetActive(true);
         UIManager.instance.UpdateBallIcons();
         ballScript.RepoitionBall();
