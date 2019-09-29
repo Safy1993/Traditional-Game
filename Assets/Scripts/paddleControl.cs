@@ -29,13 +29,13 @@ public class paddleControl : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("upArrow clicked");
+            Debug.Log("upArrow KeyDown");
             transform.GetChild(0).Rotate(xRotat, 0, 0,Space.Self);
            
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            Debug.Log("Not upArrow clicked");
+            Debug.Log("upArrow KeyUp");
 
             MovePlayer();
         }
@@ -46,8 +46,7 @@ public class paddleControl : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-
-         
+            
             transform.Rotate(0, -Time.deltaTime * 90, 0);
         }
         

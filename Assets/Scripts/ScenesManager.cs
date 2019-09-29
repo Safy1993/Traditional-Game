@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIMang : MonoBehaviour
+public class ScenesManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,9 @@ public class UIMang : MonoBehaviour
 
     public void playAgain()
     {
+
         SceneManager.LoadScene("GameL1");
+        PutterForce.instance.totalBalls = 5;
+        UIMang.instance.UpdateBallIcons();
     }
 }
