@@ -16,9 +16,9 @@ public class UIManager : MonoBehaviour
     public int score;
     public Text scoreText;
 
-    public int scoreMulitplier;
-    public GameObject scoreMltiImage;
-    public Text scoreMultiText;
+    //public int scoreMulitplier;
+    //public GameObject scoreMltiImage;
+    //public Text scoreMultiText;
 
 
     void Awake()
@@ -95,23 +95,24 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        score += scoreMulitplier*1;
+        //score += scoreMulitplier*1;
+        score +=1;
         scoreText.text = score.ToString();
     }
-    public void UpdateScoreMultiplier()
-    {
-        if (GameManager.instance.shotedBall==1)
-        {
-            scoreMulitplier++;
-            scoreMltiImage.SetActive(true);
-            scoreMultiText.text = scoreMulitplier.ToString();
+    //public void UpdateScoreMultiplier()
+    //{
+    //    if (GameManager.instance.shotedBall==1)
+    //    {
+    //        scoreMulitplier++;
+    //        scoreMltiImage.SetActive(true);
+    //        scoreMultiText.text = scoreMulitplier.ToString();
 
-        }
-        else
-        {
-            scoreMulitplier=1;
-            scoreMltiImage.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        scoreMulitplier=1;
+    //        scoreMltiImage.SetActive(false);
 
-        }
-    }
+    //    }
+    //}
 }
