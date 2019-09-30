@@ -4,9 +4,10 @@ using UnityEngine;
 
 
 public enum PutterState
-{ Idle,
-  shooting,
-  following
+{
+    Idle,
+    shooting,
+    following
 }
 
 
@@ -14,7 +15,7 @@ public enum PutterState
 public class LevelManager : MonoBehaviour
 {
     PutterState CurrentState;
-    public paddleControl paddle;
+    public PutterControl paddle;
     public Rigidbody ball;
     public int totalBalls = 5;
 
@@ -28,6 +29,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(CurrentState);
 
         switch (CurrentState)
         {
@@ -38,10 +40,13 @@ public class LevelManager : MonoBehaviour
                 {
                     Debug.Log("upArrow KeyDown");
                     paddle.Shoot();
-
                     CurrentState = PutterState.shooting;
+
                 }
+
+
                 break;
+
 
             case PutterState.shooting:
 
@@ -50,25 +55,22 @@ public class LevelManager : MonoBehaviour
                 {
                     CurrentState = PutterState.following;
                 }
-     
+
 
                 break;
 
+
             case PutterState.following:
 
-                if (ball.velocity.magnitude == 0)
+                print(ball.velocity.magnitude);
+
+                if (ball.velocity.magnitude < 0.1)
                 {
                     CurrentState = PutterState.Idle;
-
-                }
-
-
-                if (Input.GetKeyUp(KeyCode.UpArrow))
-                {
                     paddle.MovePlayer();
                 }
 
-                    break;
+                break;
 
         }
 

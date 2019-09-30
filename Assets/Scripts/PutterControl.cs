@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class paddleControl : MonoBehaviour
+public class PutterControl : MonoBehaviour
 {
 
     float xRotat = -25.0f;
@@ -27,15 +27,6 @@ public class paddleControl : MonoBehaviour
     void FixedUpdate()
     {
 
-        
-
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            Debug.Log("upArrow KeyUp");
-
-            MovePlayer();
-        }
-
             if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(0, Time.deltaTime * 90, 0);
@@ -45,13 +36,10 @@ public class paddleControl : MonoBehaviour
             
             transform.Rotate(0, -Time.deltaTime * 90, 0);
         }
-        
-        
-
-
+ 
     }
 
-    internal void Shoot()
+    public void Shoot()
     {
         transform.GetChild(0).Rotate(xRotat, 0, 0, Space.Self);
     }

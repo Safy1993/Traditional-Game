@@ -8,8 +8,7 @@ public class UIMang : MonoBehaviour
 {
     public static UIMang instance; 
     public GameObject[] allBallImg;
-   // public Sprite enabledBallImg;
-   // public Sprite diabledBallImg;
+ 
 
 
     private void Awake()
@@ -39,24 +38,29 @@ public class UIMang : MonoBehaviour
 
     public void UpdateBallIcons()
     {
+        Debug.Log("UpdateBallIcons");
+
         int ballCount = LevelManager.Instance.totalBalls;
+        Debug.Log("ballCount  : " + ballCount);
+
 
         for (int i = 0; i < 5; i++)
         {
+           
             if (i < ballCount)
             {
                 allBallImg[i].GetComponent<Image>().color = Color.white;
+                Debug.Log("white");
+
             }
             else
             {
-                allBallImg[i].GetComponent<Image>().color =Color.gray ;
+                allBallImg[i].GetComponent<Image>().color =Color.gray;
+                Debug.Log("gray");
             }
 
 
         }
 
     }
-
-
-
 }

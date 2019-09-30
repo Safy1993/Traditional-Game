@@ -9,42 +9,57 @@ public class PutterForce : MonoBehaviour
 {
     int numOfShooting;
     public Text numShootingText;
-    public Text GameOverText;
+    public GameObject GameOverText;
     public GameObject ball;
 
-    private void Awake()
-    {
-    }
+    //private void Awake()
+    //{
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
+            Debug.Log("Colliding happen");
+
+            
+            
+            //2
             other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * 70);
+            
+            //3
+            numOfShooting ++;
+            Debug.Log("shooting : "+numOfShooting);
+           
+            //4
+            showShooting();
 
-            numOfShooting++;
-
-
+            //1
             LevelManager.Instance.totalBalls--;
+            Debug.Log("total ball  : " + LevelManager.Instance.totalBalls);
+            //5 
             UIMang.instance.UpdateBallIcons();
 
 
             if (numOfShooting > 5)
             {
-                GameOverText.text = "Game Over";
-                GameOverText.enabled = true; 
-
-
+                GameOverText.SetActive(true);
+              
             }
 
         }
 
-        Debug.Log(numOfShooting);
-        numShootingText.text = "Shooting : " + numOfShooting;
-
-      
     }
 
+
+    public void showShooting()
+    {
+
+        numShootingText.text = "Shooting : " + numOfShooting;
+        Debug.Log("showShooting method in text  " + numOfShooting);
+
+
+    }
 
 
 
