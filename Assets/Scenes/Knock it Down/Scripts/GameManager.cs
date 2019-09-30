@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
 
         if (currentLevel > allLevels.Length) currentLevel = 0;
         yield return new WaitForSeconds(1.0f);
-        //UIManager.instance.UpdateScoreMultiplier();
+        UIManager.instance.UpdateScoreMultiplier();
         shotedBall = 0;
         allLevels[currentLevel].SetActive(true);
         UIManager.instance.UpdateBallIcons();
