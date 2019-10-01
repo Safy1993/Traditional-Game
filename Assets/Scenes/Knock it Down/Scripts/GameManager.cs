@@ -138,5 +138,16 @@ public class GameManager : MonoBehaviour
 
 
     }
+    public void AddExtraBall(int count)
+    {
+        if (totalBalls<5)
+        {
+            totalBalls += count;
+            UIManager.instance.UpdateBallIcons();
+
+
+        }
+
+    }
 
 }

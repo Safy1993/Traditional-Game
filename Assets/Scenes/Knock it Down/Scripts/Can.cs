@@ -8,6 +8,9 @@ public class Can : MonoBehaviour
    public bool isBombCan;
     private int blastForce=1000;
     private int blastRaduis = 20;
+
+    public bool isLifeCan;
+    public bool hasColided;
     //public ParticleSystem MuzzuleFlash;
     //MuzzuleFlash.Play();
 
@@ -35,11 +38,17 @@ public class Can : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (isBombCan)
+        if(hasColided==true) {
+            return;
+        }
+        if (collision.gameObject.name == "Ball")
         {
-            if (collision.gameObject.name=="Ball")
+            hasColided = true;
+            if (isBombCan)
             {
-                Collider[] colliders = Physics.OverlapSphere(transform.position,blastRaduis);
+               
+                
+                    Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
                 foreach (Collider c in colliders)
                 {
                     Rigidbody rb = c.GetComponent<Rigidbody>();
@@ -47,10 +56,19 @@ public class Can : MonoBehaviour
                     {
                         rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
                     }
-
+                    
                 }
             }
-         
+            else if (isLifeCan)
+            {
+
+                GameManager.instance.AddExtraBall(1);
+
+               
+            }
+            
+
         }
+       
     }
 }
