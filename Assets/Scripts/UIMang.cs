@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,8 @@ public class UIMang : MonoBehaviour
 {
     public static UIMang instance; 
     public GameObject[] allBallImg;
- 
+    public GameObject GameOverText;
+    public GameObject WinText;
 
 
     private void Awake()
@@ -38,29 +40,35 @@ public class UIMang : MonoBehaviour
 
     public void UpdateBallIcons()
     {
-        Debug.Log("UpdateBallIcons");
+        //Debug.Log("UpdateBallIcons");
 
         int ballCount = LevelManager.Instance.totalBalls;
-        Debug.Log("ballCount  : " + ballCount);
+        //Debug.Log("ballCount  : " + ballCount);
 
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5 ; i++)
         {
            
             if (i < ballCount)
             {
                 allBallImg[i].GetComponent<Image>().color = Color.white;
-                Debug.Log("white");
+                //Debug.Log("white");
 
             }
             else
             {
                 allBallImg[i].GetComponent<Image>().color =Color.gray;
-                Debug.Log("gray");
+                //Debug.Log("gray");
             }
 
 
         }
 
+    }
+
+    internal void ShowGameOver()
+    {
+       
+        GameOverText.SetActive(true);
     }
 }
