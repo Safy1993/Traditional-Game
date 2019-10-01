@@ -11,11 +11,12 @@ public class Can : MonoBehaviour
 
     public bool isLifeCan;
     public bool hasColided;
-    //public ParticleSystem MuzzuleFlash;
-    //MuzzuleFlash.Play();
+    public GameObject fx;
+   //public ParticleSystem MuzzuleFlash;
+   //MuzzuleFlash.Play();
 
-    // Start is called before the first frame update
-    void Start()
+   // Start is called before the first frame update
+   void Start()
     {
         
     }
@@ -63,8 +64,9 @@ public class Can : MonoBehaviour
             {
 
                 GameManager.instance.AddExtraBall(1);
+                fx.SetActive(true);
 
-               
+
             }
             
 
