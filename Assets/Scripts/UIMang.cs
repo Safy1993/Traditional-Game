@@ -12,6 +12,8 @@ public class UIMang : MonoBehaviour
     public GameObject GameOverText;
     public GameObject WinText;
 
+    public Text endText; 
+
 
     private void Awake()
     {
@@ -68,7 +70,8 @@ public class UIMang : MonoBehaviour
 
     internal void ShowGameOver()
     {
-       
+        endText.text = "Game Over";
+        endText.enabled = true; 
         GameOverText.SetActive(true);
     }
 }

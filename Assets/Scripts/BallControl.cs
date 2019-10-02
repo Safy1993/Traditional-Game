@@ -15,7 +15,10 @@ public class BallControl : MonoBehaviour
         if (other.gameObject.tag == "hole")
         {
 
-            Debug.Log("  hole ");
+            print(">>> hole");
+
+            UIMang.instance.endText.text = "you are win";
+            UIMang.instance.endText.enabled = true;
             UIMang.instance.WinText.SetActive(true);
 
         }

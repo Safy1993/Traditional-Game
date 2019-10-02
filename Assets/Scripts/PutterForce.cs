@@ -9,8 +9,9 @@ public class PutterForce : MonoBehaviour
 {
     public GameObject ball;
     public float ballforce=50;
+     
 
-
+   
 
     void FixedUpdate()
     {
@@ -23,10 +24,13 @@ public class PutterForce : MonoBehaviour
         {
             ballforce -= 50;
         }
+
+
+       
     }
 
 
-    private void OnTriggerEnter(Collider other)
+        void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
@@ -36,8 +40,6 @@ public class PutterForce : MonoBehaviour
             LevelManager.Instance.totalBalls--;
          
             UIMang.instance.UpdateBallIcons();
-
-
 
 
         }
