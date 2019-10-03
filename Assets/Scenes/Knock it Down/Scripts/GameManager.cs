@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CheckGameOver()
     {
         yield return new WaitForSeconds(2f);
-        if (AllGrounded()==true)
+        if (AllGrounded()==false)
         {
             UIManager.instance.gameOverUI.SetActive(true);
 
