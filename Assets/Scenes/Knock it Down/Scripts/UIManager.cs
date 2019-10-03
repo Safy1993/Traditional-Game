@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
@@ -20,6 +22,12 @@ public class UIManager : MonoBehaviour
     public GameObject scoreMltiImage;
     public Text scoreMultiText;
 
+    public static bool isRestart;
+
+    public GameObject PausePanel;
+    public GameObject gameOverUI;
+
+
 
     void Awake()
     {
@@ -37,7 +45,14 @@ public class UIManager : MonoBehaviour
     {
         HomeUI.SetActive(true);
         gameScence.SetActive(false);
-        
+        if (isRestart)
+        {
+            isRestart = false;
+            HomeUI.SetActive(false);
+            gameScence.SetActive(true);
+            GameManager.instance.StartGame();
+
+        }
     }
 
     // Update is called once per frame
@@ -68,6 +83,26 @@ public class UIManager : MonoBehaviour
         StartCoroutine(StartRoutine());
 
     }
+    public void B_Restart()
+    {
+        StartCoroutine(RestartStartRoutine());
+
+    }
+    public void B_Back()
+    {
+        PausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void B_Back_Yes()
+    {
+        Time.timeScale =1;
+        SceneManager.LoadScene(1);
+    }
+    public void B_Back_No()
+    {
+        Time.timeScale = 1;
+        PausePanel.SetActive(false);
+    }
 
     IEnumerator StartRoutine()
     {
@@ -80,6 +115,7 @@ public class UIManager : MonoBehaviour
         
 
     }
+   
     public void ShowBlackFade()
     {
         StartCoroutine(FadeRoutine());
@@ -114,5 +150,17 @@ public class UIManager : MonoBehaviour
             scoreMltiImage.SetActive(false);
 
         }
+    }
+    IEnumerator RestartStartRoutine()
+    {
+        ShowBlackFade();
+        isRestart = true;
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(1);
+        
+     
+
+
+
     }
 }

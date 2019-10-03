@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool gameHasStarted;
 
     public int shotedBall;
+ 
 
 
     // Start is called before the first frame update
@@ -37,14 +39,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameHasStarted = true;
-        //readyToShoot = true;
+       
 
+    }
+    public void StartGame()
+    {
+        gameHasStarted = true;
+        readyToShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+
+        }
         Vector3 dir = Target.position - ball.transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 
@@ -72,6 +83,7 @@ public class GameManager : MonoBehaviour
             {
                 //check gameoevr
                 print("Game Over");
+                StartCoroutine(CheckGameOver());
 
             }
         }
@@ -147,6 +159,17 @@ public class GameManager : MonoBehaviour
 
 
         }
+
+    }
+    IEnumerator CheckGameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        if (AllGrounded()==true)
+        {
+            UIManager.instance.gameOverUI.SetActive(true);
+
+        }
+
 
     }
 
