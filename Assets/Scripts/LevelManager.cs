@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
                     //Debug.Log("upArrow KeyDown");
                     paddle.Shoot();
                     CurrentState = PutterState.shooting;
-                    numOfShooting--;
+                    //numOfShooting--;
                 }
 
 
@@ -56,7 +56,9 @@ public class LevelManager : MonoBehaviour
             case PutterState.shooting:
 
 
-                if (ball.velocity.magnitude > 0)
+                //print("shooting " + ball.velocity.magnitude);
+
+                if (ball.velocity.magnitude >= 0)
                 {
                     CurrentState = PutterState.following;
                 }
@@ -67,20 +69,23 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.following:
 
-                //   print(ball.velocity.magnitude);
+                //print("following " + ball.velocity.magnitude);
 
-                if (ball.velocity.magnitude < 0.1)
+                if (ball.velocity.magnitude <= 0)
                 {
-                    timer -= Time.deltaTime;
+                   // print("following ball.velocity.magnitude < 0 ");
+                   timer -= Time.deltaTime;
 
                     if (timer < 0)
                     {
-                        if (numOfShooting == 0)
+                 
+                        if (totalBalls == 0)
                         {
                             UIMang.instance.ShowGameOver();
                         }
                         else
                         {
+                            print("Idel state >>> ");
                             CurrentState = PutterState.Idle;
                             paddle.MovePlayer();
                             timer = 2;
