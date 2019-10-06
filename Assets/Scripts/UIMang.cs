@@ -11,7 +11,7 @@ public class UIMang : MonoBehaviour
     public GameObject[] allBallImg;
     public GameObject GameOverText;
     public GameObject WinText;
-
+    public Text gearRotation; 
     public Text endText; 
 
 

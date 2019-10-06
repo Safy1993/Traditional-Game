@@ -46,7 +46,6 @@ public class PutterControl : MonoBehaviour
 
     public void MovePlayer()
     {
-
         print("MovePlayer");
         transform.GetChild(0).localEulerAngles = new Vector3(0, 0, 0);
         transform.position = ballpos.position;
