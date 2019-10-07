@@ -15,12 +15,12 @@ public class PutterControl : MonoBehaviour
 
     public Transform ballpos;
 
-
+    public static PutterControl Instance;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instance = this;  
     }
 
     // Update is called once per frame

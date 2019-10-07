@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GearController : MonoBehaviour
 {
-    float timer= Time.deltaTime; 
-    
+    float timer;
+    bool checkX;
+    public float force;
+  
+    public static GearController Instance;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -17,8 +20,30 @@ public class GearController : MonoBehaviour
     {
         //Quaternion posetion = OVRInpu
 
-        UIMang.instance.gearRotation.text = " Gear Rotation =  [ " +  OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
+        UIMang.instance.gearRotation.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
+        //if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote))
+        //{
 
+        //}
+
+        float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
+
+        if (xrot < -0.3)
+        {
+            checkX = true;
+            timer = 0;
+        }
+        else if (checkX && xrot > 0.3 && timer < 1f)
+        {
+
+           force = (1 / timer) * 20;
+            PutterControl.Instance.Shoot();
+
+        }
+        else if (checkX)
+        {
+            timer += Time.deltaTime;
+        }
         
     }
 }

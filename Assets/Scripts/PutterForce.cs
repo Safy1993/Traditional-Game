@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class PutterForce : MonoBehaviour
 {
     public GameObject ball;
-    public float ballforce=50;
-     
+    public float ballforce;
 
-   
+ 
 
+     void Start()
+    {
+      
+    }
     void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -30,12 +33,12 @@ public class PutterForce : MonoBehaviour
     }
 
 
-        void OnTriggerEnter(Collider other)
+       public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
-          
-            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
+           ballforce= GearController.Instance.force;
+           other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
           
             LevelManager.Instance.totalBalls--;
          
