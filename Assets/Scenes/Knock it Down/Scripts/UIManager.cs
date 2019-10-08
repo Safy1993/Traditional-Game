@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class UIManager : MonoBehaviour
     
     public int score;
     public Text scoreText;
+    public int highscore;
+    public Text highscoreText;
 
     public int scoreMulitplier=1;
     public GameObject scoreMltiImage;
@@ -26,6 +29,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject PausePanel;
     public GameObject gameOverUI;
+    //Timer
+    private int countDownStartValue=10;
+    public Text timerext;
 
 
 
@@ -53,6 +59,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.StartGame();
 
         }
+        countDownTimer();
     }
 
     // Update is called once per frame
@@ -134,6 +141,7 @@ public class UIManager : MonoBehaviour
         score += scoreMulitplier*1;
         
         scoreText.text = score.ToString();
+        
     }
     public void UpdateScoreMultiplier()
     {
@@ -156,11 +164,43 @@ public class UIManager : MonoBehaviour
         ShowBlackFade();
         isRestart = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         
      
 
 
 
+    }
+    public void HightScore()
+    {
+        if (score > highscore)
+        {
+            highscore = score;
+            highscoreText.text = "Your Score:" + score;
+
+            PlayerPrefs.SetInt("highscore", highscore);
+
+
+        }
+    }
+    void countDownTimer()
+    {
+        
+        if (countDownStartValue>0)
+        {
+            TimeSpan spanTime = TimeSpan.FromSeconds(countDownStartValue);
+            timerext.text = "Timer : " +spanTime.Seconds;
+            countDownStartValue--;
+            Invoke("countDownTimer", 1.0f);
+
+
+
+        }
+        else
+        {
+            gameOverUI.SetActive(true);
+            HightScore();
+
+        }
     }
 }

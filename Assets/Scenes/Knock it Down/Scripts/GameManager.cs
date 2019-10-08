@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour
         if (AllGrounded()==false)
         {
             UIManager.instance.gameOverUI.SetActive(true);
+            UIManager.instance.HightScore();
 
         }
 
