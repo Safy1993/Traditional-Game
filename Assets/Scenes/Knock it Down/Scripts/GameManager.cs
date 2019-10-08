@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
             //shoot the ball
             ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
             readyToShoot = false;
+                                                                
             shotedBall++;
             totalBalls--;
             UIManager.instance.UpdateBallIcons();
@@ -128,6 +129,7 @@ public class GameManager : MonoBehaviour
         if (gameHasStarted)
         {
             StartCoroutine(LoadNextLevelRoutine());
+            
 
         }
     }
@@ -143,10 +145,14 @@ public class GameManager : MonoBehaviour
         if (currentLevel > allLevels.Length) currentLevel = 0;
         yield return new WaitForSeconds(1.0f);
         UIManager.instance.UpdateScoreMultiplier();
+       
         shotedBall = 0;
         allLevels[currentLevel].SetActive(true);
+        totalBalls = 5;
         UIManager.instance.UpdateBallIcons();
+       
         ballScript.RepoitionBall();
+       
 
 
     }
@@ -166,9 +172,10 @@ public class GameManager : MonoBehaviour
        yield return new WaitForSeconds(2f);
         if (AllGrounded()==false)
         {
-           UIManager.instance.HightScore();
-            UIManager.instance.gameOverUI.SetActive(true);
            
+            UIManager.instance.gameOverUI.SetActive(true);
+            UIManager.instance.HightScore();
+
 
         }
 

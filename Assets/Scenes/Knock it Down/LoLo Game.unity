@@ -2806,6 +2806,7 @@ MonoBehaviour:
   scoreMultiText: {fileID: 1218324447}
   PausePanel: {fileID: 300393523}
   gameOverUI: {fileID: 954322742}
+  timerext: {fileID: 1381157882}
 --- !u!1 &954322742
 GameObject:
   m_ObjectHideFlags: 0
