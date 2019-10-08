@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public int score;
     public Text scoreText;
     public int highscore;
-    public Text highscoreText;
+   public Text highscoreText;
 
     public int scoreMulitplier=1;
     public GameObject scoreMltiImage;
@@ -30,8 +30,8 @@ public class UIManager : MonoBehaviour
     public GameObject PausePanel;
     public GameObject gameOverUI;
     //Timer
-    private int countDownStartValue=10;
-    public Text timerext;
+    //private int countDownStartValue=20;
+    //public Text timerext;
 
 
 
@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.StartGame();
 
         }
-        countDownTimer();
+        //countDownTimer();
     }
 
     // Update is called once per frame
@@ -183,24 +183,24 @@ public class UIManager : MonoBehaviour
 
         }
     }
-    void countDownTimer()
-    {
-        
-        if (countDownStartValue>0)
-        {
-            TimeSpan spanTime = TimeSpan.FromSeconds(countDownStartValue);
-            timerext.text = "Timer : " +spanTime.Seconds;
-            countDownStartValue--;
-            Invoke("countDownTimer", 1.0f);
+    //void countDownTimer()
+    //{
+
+    //    if (countDownStartValue>0)
+    //    {
+    //        TimeSpan spanTime = TimeSpan.FromSeconds(countDownStartValue);
+    //        timerext.text = "Timer : " +spanTime.Seconds;
+    //        countDownStartValue--;
+    //        Invoke("countDownTimer", 1.0f);
 
 
 
-        }
-        else
-        {
-            gameOverUI.SetActive(true);
-            HightScore();
+    //    }
+    //else
+    //{
+    //    gameOverUI.SetActive(true);
+    //    HightScore();
 
-        }
-    }
+    //}
+    //}
 }

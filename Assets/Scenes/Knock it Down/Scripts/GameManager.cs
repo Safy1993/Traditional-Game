@@ -163,11 +163,12 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator CheckGameOver()
     {
-        yield return new WaitForSeconds(2f);
+       yield return new WaitForSeconds(2f);
         if (AllGrounded()==false)
         {
+           UIManager.instance.HightScore();
             UIManager.instance.gameOverUI.SetActive(true);
-            UIManager.instance.HightScore();
+           
 
         }
 
