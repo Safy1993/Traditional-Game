@@ -14,7 +14,7 @@ public enum PutterState
 
 public class LevelManager : MonoBehaviour
 {
-    PutterState CurrentState;
+   public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
     public int totalBalls = 5;
@@ -34,6 +34,8 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+
         print(CurrentState);
 
         switch (CurrentState)
@@ -44,11 +46,12 @@ public class LevelManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     //Debug.Log("upArrow KeyDown");
-                    paddle.Shoot();
-                    CurrentState = PutterState.shooting;
+                    Shoot();
                     //numOfShooting--;
                 }
 
+
+               
 
                 break;
 
@@ -71,7 +74,7 @@ public class LevelManager : MonoBehaviour
 
                 //print("following " + ball.velocity.magnitude);
 
-                if (ball.velocity.magnitude <= 0)
+                if (ball.velocity.magnitude <= 0.05f)
                 {
                    // print("following ball.velocity.magnitude < 0 ");
                    timer -= Time.deltaTime;
@@ -98,5 +101,11 @@ public class LevelManager : MonoBehaviour
         }
 
 
+    }
+
+    public void Shoot()
+    {
+        paddle.Shoot();
+        CurrentState = PutterState.shooting;
     }
 }

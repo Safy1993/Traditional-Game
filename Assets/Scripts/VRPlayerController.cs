@@ -21,7 +21,7 @@ public class VRPlayerController : MonoBehaviour
         Vector3 forward = centerEye.forward;
         forward.y = 0;
         transform.position += forward * touvhInput.y * Speed * Time.deltaTime;
-        Vector3 right = centerEye.forward;
+        Vector3 right = centerEye.right;
         right.y = 0;
         transform.position += right * touvhInput.x * Speed * Time.deltaTime;
 

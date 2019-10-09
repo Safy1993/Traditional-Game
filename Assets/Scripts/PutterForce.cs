@@ -9,10 +9,10 @@ public class PutterForce : MonoBehaviour
 {
     public GameObject ball;
     public float ballforce;
+    float Speed = 5;
+    public Transform centerE; 
 
- 
-
-     void Start()
+    void Start()
     {
       
     }
@@ -29,7 +29,7 @@ public class PutterForce : MonoBehaviour
         }
 
 
-       
+
     }
 
 
