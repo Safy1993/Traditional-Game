@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3973907587516946020
+--- !u!1 &1324766820226547573
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 107380768794977399}
-  - component: {fileID: 8945970212066598465}
-  - component: {fileID: 3394291255859962552}
-  - component: {fileID: 6291463135476922263}
-  - component: {fileID: 385970967366182356}
-  - component: {fileID: 5114814348675864411}
+  - component: {fileID: 2610361274101747046}
+  - component: {fileID: 6440951212430489424}
+  - component: {fileID: 747125210997689257}
+  - component: {fileID: 8217776162314641030}
+  - component: {fileID: 2314741420680236229}
+  - component: {fileID: 7187704387326426698}
   m_Layer: 0
   m_Name: BombCan
   m_TagString: Untagged
@@ -21,35 +21,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &107380768794977399
+--- !u!4 &2610361274101747046
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 3.4, z: 41.09}
+  m_LocalPosition: {x: -109.7554, y: 72.39167, z: -383.734}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8945970212066598465
+--- !u!33 &6440951212430489424
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   m_Mesh: {fileID: -951608786083511892, guid: 49d343e440bf783418ef4bfa1670a8bd, type: 3}
---- !u!23 &3394291255859962552
+--- !u!23 &747125210997689257
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -80,13 +80,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6291463135476922263
+--- !u!64 &8217776162314641030
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -94,13 +94,13 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -951608786083511892, guid: 49d343e440bf783418ef4bfa1670a8bd, type: 3}
---- !u!54 &385970967366182356
+--- !u!54 &2314741420680236229
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   serializedVersion: 2
   m_Mass: 50
   m_Drag: 0
@@ -110,13 +110,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5114814348675864411
+--- !u!114 &7187704387326426698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3973907587516946020}
+  m_GameObject: {fileID: 1324766820226547573}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 959dc843d67ef48449aad18f0b7f5ffc, type: 3}
@@ -124,3 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFallen: 0
   isBombCan: 1
+  isLifeCan: 0
+  hasColided: 0
+  fx: {fileID: 0}
+  blastFX: {fileID: 7724378103697860438, guid: d0baa62b109fd904f95a91f4b770161c, type: 3}

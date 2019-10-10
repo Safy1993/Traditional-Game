@@ -12,11 +12,12 @@ public class Can : MonoBehaviour
     public bool isLifeCan;
     public bool hasColided;
     public GameObject fx;
-   //public ParticleSystem MuzzuleFlash;
-   //MuzzuleFlash.Play();
+    public GameObject blastFX;
+    //public ParticleSystem MuzzuleFlash;
+    //MuzzuleFlash.Play();
 
-   // Start is called before the first frame update
-   void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
@@ -45,11 +46,11 @@ public class Can : MonoBehaviour
         if (collision.gameObject.name == "Ball")
         {
             hasColided = true;
+
             if (isBombCan)
             {
-               
-                
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+
                 foreach (Collider c in colliders)
                 {
                     Rigidbody rb = c.GetComponent<Rigidbody>();
@@ -57,7 +58,10 @@ public class Can : MonoBehaviour
                     {
                         rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
                     }
-                    
+
+
+
+                    Instantiate(blastFX, transform.position, Quaternion.identity);
                 }
             }
             else if (isLifeCan)

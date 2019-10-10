@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         {
             //shoot the ball
             ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
+
             readyToShoot = false;
                                                                 
             shotedBall++;
