@@ -20,6 +20,8 @@ public class LineRenderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         Ray ray = new Ray(transform.position, transform.forward);
 
         RaycastHit hit;

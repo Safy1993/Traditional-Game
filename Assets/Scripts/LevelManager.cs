@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour
 
                     if (timer < 0)
                     {
-                 
+                       
                         if (totalBalls == 0)
                         {
                             UIMang.instance.ShowGameOver();

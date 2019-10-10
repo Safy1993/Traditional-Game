@@ -19,7 +19,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 TargetPosition = Target.position + Vector3.up * offset.y + Vector3.forward * offset.z;
+        Vector3 TargetPosition = Target.position + Vector3.up * offset.y + Vector3.forward * offset.x;
 
 
         Vector3 TargetVector = TargetPosition - transform.position;

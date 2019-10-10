@@ -26,7 +26,7 @@ public class GearController : MonoBehaviour
         UIMang.instance.gearRotation.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
 
-        float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
+        float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote). x;
 
         if (LevelManager.Instance.CurrentState == PutterState.Idle)
         {
@@ -37,7 +37,7 @@ public class GearController : MonoBehaviour
             }
             else if (checkX && xrot > 0.3 && timer < 1f)
             {
-                force = (1 / timer) * 20;
+                force = (1 / timer) * 15;
                 //force = 70;
                 LevelManager.Instance.Shoot();
                 checkX = false;
