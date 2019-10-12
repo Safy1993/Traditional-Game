@@ -7,6 +7,8 @@ TagManager:
   - pin
   - Ball
   - Resetter
+  - Fire
+  - BombCan
   layers:
   - Default
   - TransparentFX
