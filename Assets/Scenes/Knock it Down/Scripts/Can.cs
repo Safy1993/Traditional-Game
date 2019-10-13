@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CanType
+{
+    normal,
+    life,
+    bomb
+}
+
 public class Can : MonoBehaviour
 {
-   public bool hasFallen;
-   public bool isBombCan;
-    private int blastForce=1000;
+    public bool hasFallen;
+    //public bool isBombCan;
+    private int blastForce = 1000;
     private int blastRaduis = 20;
 
-    public bool isLifeCan;
+    public CanType type;
+
+    //public bool isLifeCan;
     public bool hasColided;
     public GameObject fx;
     public GameObject blastFX;
@@ -19,20 +28,20 @@ public class Can : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Resetter"))
         {
-            hasFallen=true;
+            hasFallen = true;
             GameManager.instance.GroundFallenCheck();
             UIManager.instance.UpdateScore();
         }
@@ -40,41 +49,51 @@ public class Can : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(hasColided==true) {
+        if (hasColided == true)
+        {
             return;
         }
         if (collision.gameObject.name == "Ball")
         {
             hasColided = true;
-
-            if (isBombCan)
+            switch (type)
             {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
 
-                foreach (Collider c in colliders)
-                {
-                    Rigidbody rb = c.GetComponent<Rigidbody>();
-                    if (rb != null)
+
+                case CanType.bomb:
+                    
+
+                        Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+
+                        foreach (Collider c in colliders)
+                        {
+                            Rigidbody rb = c.GetComponent<Rigidbody>();
+                            if (rb != null)
+                            {
+                                rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
+                            }
+
+
+
+                            Instantiate(blastFX, transform.position, Quaternion.identity);
+                        }
+                        break;
+
+
+                case CanType.life: 
                     {
-                        rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
+
+                        GameManager.instance.AddExtraBall(1);
+                        fx.SetActive(true);
+
+
                     }
-
-
-
-                    Instantiate(blastFX, transform.position, Quaternion.identity);
-                }
+                    break;
             }
-            else if (isLifeCan)
-            {
 
-                GameManager.instance.AddExtraBall(1);
-                fx.SetActive(true);
-
-
-            }
-            
 
         }
-       
+
+
     }
 }
