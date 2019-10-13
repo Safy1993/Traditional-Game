@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HomeUI.SetActive(true);
-        gameScence.SetActive(false);
+        //gameScence.SetActive(false);
         if (isRestart)
         {
             isRestart = false;
