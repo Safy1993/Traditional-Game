@@ -59,7 +59,7 @@ public class UIMang : MonoBehaviour
             }
             else
             {
-                allBallImg[i].GetComponent<Image>().color =Color.gray;
+                allBallImg[i].GetComponent<Image>().color = Color.black;
                 //Debug.Log("gray");
             }
 
