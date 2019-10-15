@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
