@@ -3,8 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum GameState
+{
+    Idle,
+    Inhand,
+    Shot,
+    ballMoving
+}
+
+
 public class GameManager : MonoBehaviour
 {
+    public GameState CurrentState;
+
     public static GameManager instance;
     public GameObject ball;
     Plane plane = new Plane(Vector3.forward, 0);
@@ -20,9 +31,13 @@ public class GameManager : MonoBehaviour
     public bool gameHasStarted;
 
     public int shotedBall;
- 
 
+    bool checkX;
+    float timer;
 
+    float gameTimer = 0;
+
+    public Transform handController;
     // Start is called before the first frame update
 
     void Awake()
@@ -69,34 +84,82 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonUp(0) && readyToShoot)
+        switch (CurrentState)
         {
-            //shoot the ball
-            ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
+            case GameState.Idle:
+                CurrentState = GameState.Inhand;
+                break;
+            case GameState.Inhand:
+                float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
 
-            readyToShoot = false;
-                                                                
-            shotedBall++;
-            totalBalls--;
-            UIManager.instance.UpdateBallIcons();
-                
-                
-            if (totalBalls <= 0)
-            {
-                //check gameoevr
-                print("Game Over");
-                StartCoroutine(CheckGameOver());
+                if (xrot < -0.3)
+                {
+                    checkX = true;
+                    timer = 0;
+                }
+                else if (checkX && xrot > 0.3 && timer < 1f)
+                {
+                    float force = (1 / timer) * 15;
 
-            }
+                    ball.GetComponent<Rigidbody>().AddForce(-handController.up * force);
+
+                    CurrentState = GameState.Shot;
+                    //force = 70;
+                    //LevelManager.Instance.Shoot();
+                    checkX = false;
+                }
+                else if (checkX)
+                {
+                    timer += Time.deltaTime;
+                }
+
+                if (Input.GetMouseButtonUp(0) && readyToShoot)
+                {
+                    //shoot the ball
+                    ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
+                    CurrentState = GameState.Shot;
+                    readyToShoot = false;
+
+                    shotedBall++;
+                    totalBalls--;
+                    UIManager.instance.UpdateBallIcons();
+
+
+                    if (totalBalls <= 0)
+                    {
+                        //check gameoevr
+                        print("Game Over");
+                        StartCoroutine(CheckGameOver());
+
+                    }
+                }
+
+                float dist;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (plane.Raycast(ray, out dist))
+                {
+                    Vector3 point = ray.GetPoint(dist);
+                    Target.position = new Vector3(point.x, point.y, 0);
+                }
+
+                break;
+            case GameState.Shot:
+                gameTimer += Time.deltaTime;
+
+                if (gameTimer > 3)
+                {
+                    CurrentState = GameState.Idle;
+                    gameTimer = 0;
+                }
+                break;
+            default:
+                break;
         }
 
-        float dist;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (plane.Raycast(ray, out dist))
-        {
-            Vector3 point = ray.GetPoint(dist);
-            Target.position = new Vector3(point.x, point.y, 0);
-        }
+
+
+
+
 
     }
     public void GroundFallenCheck()
@@ -105,6 +168,7 @@ public class GameManager : MonoBehaviour
         {
             //Load next Level
             print("Load Next Level");
+
             LoadNextLevel();
 
         }
@@ -127,10 +191,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (gameHasStarted)
+        if (CurrentState == GameState.Shot)
         {
             StartCoroutine(LoadNextLevelRoutine());
-            
+            CurrentState = GameState.Idle;
 
         }
     }
@@ -148,13 +212,16 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateScoreMultiplier();
        
         shotedBall = 0;
+
+        print("current level " + currentLevel);
+
         allLevels[currentLevel].SetActive(true);
         totalBalls = 5;
         UIManager.instance.UpdateBallIcons();
        
         ballScript.RepoitionBall();
-       
 
+        gameHasStarted = true;
 
     }
     public void AddExtraBall(int count)

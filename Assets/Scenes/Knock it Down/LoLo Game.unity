@@ -2757,6 +2757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89205cd5100d08443bbfe27270a509dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
   ball: {fileID: 2026586929}
   Target: {fileID: 204995505}
   ballForce: 300
@@ -2776,6 +2777,7 @@ MonoBehaviour:
   ballScript: {fileID: 2026586937}
   gameHasStarted: 1
   shotedBall: 0
+  handController: {fileID: 1597027323}
 --- !u!114 &909087964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,6 +2813,7 @@ MonoBehaviour:
   scoreMultiText: {fileID: 1218324447}
   PausePanel: {fileID: 300393523}
   gameOverUI: {fileID: 954322742}
+  gearRotationText: {fileID: 0}
 --- !u!1 &954322742
 GameObject:
   m_ObjectHideFlags: 0
@@ -9387,6 +9390,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 107380768794977399, guid: b7e39fe7d77be704b9f564970a7a6f0b,
     type: 3}
   m_PrefabInstance: {fileID: 1361534572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1597027323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4484591312116288, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 466359392}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1638812323
 GameObject:

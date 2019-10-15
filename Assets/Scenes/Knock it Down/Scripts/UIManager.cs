@@ -29,8 +29,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject PausePanel;
     public GameObject gameOverUI;
-   
 
+    public Text gearRotationText;
 
     void Awake()
     {
