@@ -9,11 +9,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public GameObject[] allBallImg;
+
     public Sprite enabledBallImg;
     public Sprite diabledBallImg;
 
     public GameObject backFg;
-    public GameObject GameUI,HomeUI;
+    public GameObject GameUI;
+    public GameObject HomeUI;
     public GameObject gameScence;
     
     public int score;
@@ -47,23 +49,26 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HomeUI.SetActive(true);
-        //gameScence.SetActive(false);
+        ////gameScence.SetActive(false);
         if (isRestart)
         {
             isRestart = false;
-            HomeUI.SetActive(false);
+           HomeUI.SetActive(false);
             gameScence.SetActive(true);
             GameManager.instance.StartGame();
 
         }
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Return))
+        {
+            StartCoroutine(StartRoutine());
+        }
     }
 
     public void UpdateBallIcons()
@@ -83,11 +88,11 @@ public class UIManager : MonoBehaviour
         }
 
     }
-    
+
     public void StartButton()
     {
         StartCoroutine(StartRoutine());
-        
+
 
 
     }
@@ -121,14 +126,10 @@ public class UIManager : MonoBehaviour
         HomeUI.SetActive(false);
         gameScence.SetActive(true);
         GameUI.SetActive(true);
-        GameManager.instance.readyToShoot = true;
-       
-
-
-
+        //GameManager.instance.readyToShoot = true;
 
     }
-   
+
     public void ShowBlackFade()
     {
         StartCoroutine(FadeRoutine());
@@ -149,40 +150,31 @@ public class UIManager : MonoBehaviour
         scoreText.text = score.ToString();
         
     }
-    public void UpdateScoreMultiplier()
-    {
-        if (GameManager.instance.shotedBall == 1)
-        {
-            scoreMulitplier++;
-            scoreMltiImage.SetActive(true);
-            scoreMultiText.text = scoreMulitplier.ToString();
+    //public void UpdateScoreMultiplier()
+    //{
+    //    if (GameManager.instance.shotedBall == 1)
+    //    {
+    //        scoreMulitplier++;
+    //        scoreMltiImage.SetActive(true);
+    //        scoreMultiText.text = scoreMulitplier.ToString();
 
-        }
-        else
-        {
-            scoreMulitplier = 1;
-            scoreMltiImage.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        scoreMulitplier = 1;
+    //        scoreMltiImage.SetActive(false);
 
-        }
-    }
+    //    }
+    //}
     IEnumerator RestartStartRoutine()
     {
         
        
         ShowBlackFade();
         isRestart = true;
-       
         yield return new WaitForSeconds(1f);
-       
         SceneManager.LoadScene(0);
-       
-
-
-
-
-
-
-
+      
     }
     public void HightScore()
     {

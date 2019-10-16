@@ -39,7 +39,7 @@ public class Can : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Resetter"))
+        if (other.gameObject.CompareTag("Finsh"))
         {
             hasFallen = true;
             GameManager.instance.GroundFallenCheck();

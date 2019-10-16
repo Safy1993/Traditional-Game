@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
     IEnumerator SetReadyToShoot()
     {
         yield return new WaitForSecondsRealtime(2.0f);
-        GameManager.instance.readyToShoot = true;
+        //GameManager.instance.readyToShoot = true;
 
 
     }

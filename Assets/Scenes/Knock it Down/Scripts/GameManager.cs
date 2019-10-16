@@ -21,14 +21,12 @@ public class GameManager : MonoBehaviour
     Plane plane = new Plane(Vector3.forward, 0);
     public Transform Target;
     public float ballForce;
-    public bool readyToShoot;
     public int totalBalls;
     public int currentLevel;
     public GameObject[] allLevels;
     public GameObject[] casSetGRB;
 
     public Ball ballScript;
-    public bool gameHasStarted;
 
     public int shotedBall;
 
@@ -59,13 +57,16 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        gameHasStarted = true;
-        readyToShoot = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
+
+        UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + handController.localRotation + " ]";
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
@@ -75,10 +76,10 @@ public class GameManager : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 
 
-        if (Input.GetMouseButton(0) && readyToShoot)
+        if (Input.GetMouseButton(0))
         {
             //shoot the ball
-            ball.GetComponent<Animator>().enabled = false;
+           ball.GetComponent<Animator>().enabled = false;
             ball.transform.position = new Vector3(mousePos.x, ball.transform.position.y, ball.transform.position.z);
 
 
@@ -88,24 +89,26 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Idle:
                 CurrentState = GameState.Inhand;
+                ball.transform.parent = handController;
+              ball.transform.localPosition = Vector3.forward * 0.3f;
+              ball.GetComponent<Animator>().enabled = false;
                 break;
             case GameState.Inhand:
                 float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
 
-                if (xrot < -0.3)
+                if (xrot < -0.7)
                 {
                     checkX = true;
                     timer = 0;
                 }
-                else if (checkX && xrot > 0.3 && timer < 1f)
+                else if (checkX && xrot > -0.2 && timer < 1f)
                 {
                     float force = (1 / timer) * 15;
-
+                    ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().AddForce(-handController.up * force);
 
                     CurrentState = GameState.Shot;
-                    //force = 70;
-                    //LevelManager.Instance.Shoot();
+                
                     checkX = false;
                 }
                 else if (checkX)
@@ -113,12 +116,11 @@ public class GameManager : MonoBehaviour
                     timer += Time.deltaTime;
                 }
 
-                if (Input.GetMouseButtonUp(0) && readyToShoot)
+                if (Input.GetMouseButtonUp(0))
                 {
                     //shoot the ball
                     ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
                     CurrentState = GameState.Shot;
-                    readyToShoot = false;
 
                     shotedBall++;
                     totalBalls--;
@@ -203,13 +205,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Loding next level");
         yield return new WaitForSeconds(1.5f);
         UIManager.instance.ShowBlackFade();
-        readyToShoot = false;
         allLevels[currentLevel].SetActive(false);
         currentLevel++;
 
         if (currentLevel > allLevels.Length) currentLevel = 0;
         yield return new WaitForSeconds(1.0f);
-        UIManager.instance.UpdateScoreMultiplier();
+       // UIManager.instance.UpdateScoreMultiplier();
        
         shotedBall = 0;
 
@@ -220,8 +221,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateBallIcons();
        
         ballScript.RepoitionBall();
-
-        gameHasStarted = true;
 
     }
     public void AddExtraBall(int count)
