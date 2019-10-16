@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &422353672597676189
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6270656702324896393}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6270656702324896393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422353672597676189}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4610784894940056920}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1491887156508147237
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +12,7 @@ GameObject:
   - component: {fileID: 6896242555843474944}
   - component: {fileID: 903228437046528761}
   m_Layer: 0
-  m_Name: masjedmesh 1 (1)
+  m_Name: masjed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491887156508147237}
   m_LocalRotation: {x: 0.48919713, y: -0.51057434, z: -0.51057434, w: 0.4891971}
-  m_LocalPosition: {x: -14.629419, y: 34.510853, z: 4.6040287}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 200.307}
   m_Children:
-  - {fileID: 4610784894940056920}
   - {fileID: 7526353303073468550}
+  - {fileID: 7712742563733163133}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,37 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &3206324927173727912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4610784894940056920}
-  m_Layer: 0
-  m_Name: masjed forms mesh (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4610784894940056920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3206324927173727912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6270656702324896393}
-  m_Father: {fileID: 2517343614354607158}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &513335074489706769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,11 +87,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2517343614354607158}
     m_Modifications:
-    - target: {fileID: 6428352098763271044, guid: 72b873d55078f7d4e9f28fec5f692a54,
-        type: 3}
-      propertyPath: m_Name
-      value: masjed forms mesh2
-      objectReference: {fileID: 0}
     - target: {fileID: 8029146227545020823, guid: 72b873d55078f7d4e9f28fec5f692a54,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,7 +125,7 @@ PrefabInstance:
     - target: {fileID: 8029146227545020823, guid: 72b873d55078f7d4e9f28fec5f692a54,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8029146227545020823, guid: 72b873d55078f7d4e9f28fec5f692a54,
         type: 3}
@@ -223,6 +157,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5914548
       objectReference: {fileID: 0}
+    - target: {fileID: 6428352098763271044, guid: 72b873d55078f7d4e9f28fec5f692a54,
+        type: 3}
+      propertyPath: m_Name
+      value: masjed forms mesh2
+      objectReference: {fileID: 0}
     - target: {fileID: 4686785001155059544, guid: 72b873d55078f7d4e9f28fec5f692a54,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -235,4 +174,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8029146227545020823, guid: 72b873d55078f7d4e9f28fec5f692a54,
     type: 3}
   m_PrefabInstance: {fileID: 513335074489706769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1642931642410355382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2517343614354607158}
+    m_Modifications:
+    - target: {fileID: 5448984156129293528, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_Name
+      value: masjed_top_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0121
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0095
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.51629645
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5388579
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.46050584
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.48062932
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -83.020004
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 159.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -69.406006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53024
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf, type: 3}
+--- !u!4 &7712742563733163133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642931642410355382}
   m_PrefabAsset: {fileID: 0}

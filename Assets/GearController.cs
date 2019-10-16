@@ -26,7 +26,7 @@ public class GearController : MonoBehaviour
         UIMang.instance.gearRotation.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
 
-        float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote). x;
+        float xrot =  OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote). x;
 
         if (LevelManager.Instance.CurrentState == PutterState.Idle)
         {

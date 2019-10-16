@@ -44,7 +44,7 @@ public class PutterControl : MonoBehaviour
 
     public void Shoot()
     {
-        transform.GetChild(0).Rotate(xRotat, 0, 0, Space.Self);
+        transform.GetChild(0).Rotate( xRotat, 0, 0, Space.Self);
         Invoke("ResetRotation", 1f);
     }
 
