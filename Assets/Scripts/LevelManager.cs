@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public enum PutterState
@@ -17,7 +19,12 @@ public class LevelManager : MonoBehaviour
    public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
-    public int totalBalls = 5;
+    public int totalBalls = 10;
+
+    public GameObject[] arrowLevel1 ;
+
+    public GameObject[] arrowLevel2;
+    public Button nextLevel; 
 
     public static LevelManager Instance;
 
@@ -26,6 +33,17 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < arrowLevel1.Length; i++)
+        {
+            arrowLevel1[i].SetActive(true);
+        }
+
+        for (int i = 0; i < arrowLevel2.Length; i++)
+        {
+            arrowLevel2[i].SetActive(false);
+        }
+        nextLevel.enabled = false; 
+
         Instance = this;
 
         numOfShooting = 5;
@@ -61,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
                 //print("shooting " + ball.velocity.magnitude);
 
-                if (ball.velocity.magnitude >= 0)
+                if (ball.velocity.magnitude >= 0.01f)
                 {
                     CurrentState = PutterState.following;
                 }
@@ -107,5 +125,21 @@ public class LevelManager : MonoBehaviour
     {
         paddle.Shoot();
         CurrentState = PutterState.shooting;
+    }
+
+    public void onNextLevel()
+    {
+
+        SceneManager.LoadScene("GameL1");
+        for (int i = 0; i < arrowLevel2.Length; i++)
+        {
+            arrowLevel2[i].SetActive(true);
+        }
+
+        for (int i = 0; i < arrowLevel1.Length; i++)
+        {
+            arrowLevel1[i].SetActive(false);
+        }
+
     }
 }

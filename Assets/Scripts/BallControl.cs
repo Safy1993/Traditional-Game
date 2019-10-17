@@ -21,6 +21,13 @@ public class BallControl : MonoBehaviour
             UIMang.instance.endText.enabled = true;
             UIMang.instance.WinText.SetActive(true);
 
+            for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
+            {
+                LevelManager.Instance.arrowLevel1[i].SetActive(false);
+            }
+
+
+
         }
 
     }

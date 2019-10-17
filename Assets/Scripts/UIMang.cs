@@ -48,7 +48,7 @@ public class UIMang : MonoBehaviour
         //Debug.Log("ballCount  : " + ballCount);
 
 
-        for (int i = 0; i < 5 ; i++)
+        for (int i = 0; i < ballCount; i++)
         {
            
             if (i < ballCount)
@@ -59,7 +59,7 @@ public class UIMang : MonoBehaviour
             }
             else
             {
-                allBallImg[i].GetComponent<Image>().color = Color.black;
+                allBallImg[i].GetComponent<Image>().color = Color.yellow;
                 //Debug.Log("gray");
             }
 
