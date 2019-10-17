@@ -8,7 +8,8 @@ public enum GameState
     Idle,
     Inhand,
     Shot,
-    ballMoving
+    ballMoving,
+    gameover
 }
 
 
@@ -36,14 +37,18 @@ public class GameManager : MonoBehaviour
     float gameTimer = 0;
 
     public Transform handController;
+
+    bool lastShot;
     // Start is called before the first frame update
+    //float xrot = -1;
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-        } else
+        }
+        else
         {
             Destroy(this.gameObject);
         }
@@ -52,20 +57,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-       
+        CurrentState = GameState.gameover;
 
     }
     public void StartGame()
     {
-
+        CurrentState = GameState.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
-        UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + handController.localRotation + " ]";
+
+        // UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + handController.localRotation + " ]";
 
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -79,7 +84,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             //shoot the ball
-           ball.GetComponent<Animator>().enabled = false;
+            //ball.GetComponent<Animator>().enabled = false;
             ball.transform.position = new Vector3(mousePos.x, ball.transform.position.y, ball.transform.position.z);
 
 
@@ -90,11 +95,21 @@ public class GameManager : MonoBehaviour
             case GameState.Idle:
                 CurrentState = GameState.Inhand;
                 ball.transform.parent = handController;
-              ball.transform.localPosition = Vector3.forward * 0.3f;
-              ball.GetComponent<Animator>().enabled = false;
+                ball.transform.localPosition = Vector3.forward;
+                //ball.GetComponent<Animator>().enabled = false;
+                ball.GetComponent<Rigidbody>().isKinematic = true;
+
+                
+
                 break;
             case GameState.Inhand:
                 float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
+                //if (Input.GetKey(KeyCode.S))
+                //{
+                //    xrot += Time.deltaTime * 5;
+                //}
+
+                UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
                 if (xrot < -0.7)
                 {
@@ -103,12 +118,34 @@ public class GameManager : MonoBehaviour
                 }
                 else if (checkX && xrot > -0.2 && timer < 1f)
                 {
+
+
+
                     float force = (1 / timer) * 15;
+
+                    UIManager.instance.gearRotationText.text = " Force =  [ " + force + " ]";
+
                     ball.transform.parent = null;
-                    ball.GetComponent<Rigidbody>().AddForce(-handController.up * force);
+                    ball.GetComponent<Rigidbody>().isKinematic = false;
+
+                    ball.GetComponent<Rigidbody>().AddForce(handController.forward * force, ForceMode.Impulse);
+
 
                     CurrentState = GameState.Shot;
-                
+                    xrot = -1;
+                    shotedBall++;
+                    totalBalls--;
+                    UIManager.instance.UpdateBallIcons();
+
+
+                    if (totalBalls <= 0)
+                    {
+                        //check gameoevr
+                        print("Game Over");
+                        //StartCoroutine(CheckGameOver());
+                        lastShot = true;
+                    }
+
                     checkX = false;
                 }
                 else if (checkX)
@@ -119,6 +156,9 @@ public class GameManager : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     //shoot the ball
+                    ball.transform.parent = null;
+                    ball.GetComponent<Rigidbody>().isKinematic = false;
+
                     ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
                     CurrentState = GameState.Shot;
 
@@ -150,7 +190,16 @@ public class GameManager : MonoBehaviour
 
                 if (gameTimer > 3)
                 {
-                    CurrentState = GameState.Idle;
+                    if (!lastShot)
+                    {
+                        CurrentState = GameState.Idle;
+                    }
+                    else
+                    {
+                        CurrentState = GameState.gameover;
+                        UIManager.instance.gameOverUI.SetActive(true);
+                        lastShot = false;
+                    }
                     gameTimer = 0;
                 }
                 break;
@@ -210,8 +259,8 @@ public class GameManager : MonoBehaviour
 
         if (currentLevel > allLevels.Length) currentLevel = 0;
         yield return new WaitForSeconds(1.0f);
-       // UIManager.instance.UpdateScoreMultiplier();
-       
+        // UIManager.instance.UpdateScoreMultiplier();
+
         shotedBall = 0;
 
         print("current level " + currentLevel);
@@ -219,13 +268,13 @@ public class GameManager : MonoBehaviour
         allLevels[currentLevel].SetActive(true);
         totalBalls = 5;
         UIManager.instance.UpdateBallIcons();
-       
+
         ballScript.RepoitionBall();
 
     }
     public void AddExtraBall(int count)
     {
-        if (totalBalls<5)
+        if (totalBalls < 5)
         {
             totalBalls += count;
             UIManager.instance.UpdateBallIcons();
@@ -236,13 +285,13 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator CheckGameOver()
     {
-       yield return new WaitForSeconds(2f);
-        if (AllGrounded()==false)
+        yield return new WaitForSeconds(2f);
+        if (AllGrounded() == false)
         {
-           
+
             UIManager.instance.gameOverUI.SetActive(true);
             UIManager.instance.HightScore();
-
+            CurrentState = GameState.gameover;
 
         }
 

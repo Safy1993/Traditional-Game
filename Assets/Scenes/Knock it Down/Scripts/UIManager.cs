@@ -126,6 +126,8 @@ public class UIManager : MonoBehaviour
         HomeUI.SetActive(false);
         gameScence.SetActive(true);
         GameUI.SetActive(true);
+
+        GameManager.instance.StartGame();
         //GameManager.instance.readyToShoot = true;
 
     }

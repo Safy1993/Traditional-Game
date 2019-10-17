@@ -21,20 +21,20 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Resetter"))
-        {
-            RepoitionBall();
-        }
+        //if (other.gameObject.CompareTag("Resetter"))
+        //{
+        //    RepoitionBall();
+        //}
         
     }
 
     public void RepoitionBall()
     {
-        this.gameObject.SetActive(false);
-        transform.position = spawnPos;
-        this.GetComponent<Animator>().enabled = true;
-        gameObject.SetActive(true);
-        StartCoroutine(SetReadyToShoot());
+        //this.gameObject.SetActive(false);
+        //transform.position = spawnPos;
+        //this.GetComponent<Animator>().enabled = true;
+        //gameObject.SetActive(true);
+        //StartCoroutine(SetReadyToShoot());
 
     } 
     
