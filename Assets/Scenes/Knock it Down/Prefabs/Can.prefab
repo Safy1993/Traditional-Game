@@ -123,4 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasFallen: 0
-  isBombCan: 0
+  type: 0
+  hasColided: 0
+  fx: {fileID: 0}
+  blastFX: {fileID: 0}
+  lifeFx: {fileID: 0}
+  duseFX: {fileID: 5794691446650640814, guid: 818ea488120c9b546afa98ca7aa7a244, type: 3}
