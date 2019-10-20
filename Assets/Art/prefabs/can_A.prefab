@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3192255816659159109}
   - component: {fileID: 7028787322977475143}
   - component: {fileID: 6695709137171641263}
+  - component: {fileID: -5432570940755466336}
   m_Layer: 0
   m_Name: can_A
   m_TagString: Untagged
@@ -116,3 +117,16 @@ MonoBehaviour:
   blastFX: {fileID: 0}
   lifeFx: {fileID: 0}
   duseFX: {fileID: 5794691446650640814, guid: 818ea488120c9b546afa98ca7aa7a244, type: 3}
+--- !u!65 &-5432570940755466336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779080615856897177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.34479618, y: 0.34479722, z: 0.44121277}
+  m_Center: {x: -0.00000047683716, y: -0.0000009536745, z: 0.22060734}

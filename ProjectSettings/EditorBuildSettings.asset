@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Knock it Down/LoLo Game.unity
-    guid: b073d4c0f025bf34284987d7b60ebdc9
+    path: Assets/Scenes/Knock it Down/LoloGame2.unity
+    guid: 09920575ae7867b48b91318c965b6436
   m_configObjects: {}
