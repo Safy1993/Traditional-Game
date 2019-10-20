@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - hole
-  - ball
-  - ground
+  - pin
+  - Ball
+  - Resetter
+  - Fire
+  - BombCan
   layers:
   - Default
   - TransparentFX

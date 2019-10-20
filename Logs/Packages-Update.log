@@ -1,5 +1,5 @@
 
-=== Mon Sep 16 11:02:26 2019
+=== Tue Sep 17 12:26:42 2019
 
 Packages were changed.
 Update Mode: resetToDefaultDependencies
@@ -43,7 +43,7 @@ The following packages were added:
   com.unity.modules.wind@1.0.0
   com.unity.modules.xr@1.0.0
 
-=== Sun Oct 13 10:29:23 2019
+=== Thu Oct 17 14:35:23 2019
 
 Packages were changed.
 Update Mode: updateDependencies
@@ -53,7 +53,7 @@ The following packages were added:
   com.unity.ext.nunit@1.0.0
   com.unity.test-framework@1.0.13
   com.unity.2d.sprite@1.0.0
-  com.unity.ide.vscode@1.1.0
+  com.unity.ide.vscode@1.1.2
   com.unity.ide.rider@1.1.0
   com.unity.ugui@1.0.0
   com.unity.modules.androidjni@1.0.0
