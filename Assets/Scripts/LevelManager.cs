@@ -63,9 +63,9 @@ public class LevelManager : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    //Debug.Log("upArrow KeyDown");
+                   
                     Shoot();
-                    //numOfShooting--;
+                  
                 }
 
 
@@ -76,8 +76,7 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.shooting:
 
-
-                //print("shooting " + ball.velocity.magnitude);
+                
 
                 if (ball.velocity.magnitude >= 0.01f)
                 {
@@ -90,11 +89,11 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.following:
 
-                //print("following " + ball.velocity.magnitude);
+               
 
                 if (ball.velocity.magnitude <= 0.05f)
                 {
-                   // print("following ball.velocity.magnitude < 0 ");
+             
                    timer -= Time.deltaTime;
 
                     if (timer < 0)
