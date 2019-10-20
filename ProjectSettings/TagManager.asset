@@ -7,6 +7,7 @@ TagManager:
   - hole
   - ball
   - ground
+  - holeL2
   layers:
   - Default
   - TransparentFX

@@ -131,6 +131,7 @@ public class LevelManager : MonoBehaviour
     {
 
         SceneManager.LoadScene("GameL1");
+        
         for (int i = 0; i < arrowLevel2.Length; i++)
         {
             arrowLevel2[i].SetActive(true);
