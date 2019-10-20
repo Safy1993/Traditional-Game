@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UIMang : MonoBehaviour
 {
     public static UIMang instance;
-    public GameObject[] allBallImg;
+   // public GameObject[] allBallImg;
     public GameObject GameOverText;
     public GameObject WinText;
     public Text gearRotation;
@@ -87,7 +87,7 @@ public class UIMang : MonoBehaviour
     }
 
 
-   
+
 
 
 
