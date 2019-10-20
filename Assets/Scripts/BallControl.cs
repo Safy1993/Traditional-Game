@@ -22,7 +22,7 @@ public class BallControl : MonoBehaviour
             UIMang.instance.WinText.SetActive(true);
             PlayerPrefs.SetInt("Score", UIMang.instance.score);
 
-            LevelManager.Instance.nextLevel.enabled = true;
+            LevelManager.Instance.nextLevel.SetActive(true);
             for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
             {
                 LevelManager.Instance.arrowLevel1[i].SetActive(false);

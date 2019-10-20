@@ -41,13 +41,9 @@ public class UIMang : MonoBehaviour
         totalTime += Time.deltaTime;
         UpdateLevelTimer(totalTime);
 
-        if (totalTime > 10f)
-        {
-            score -= 1;
-            textScore.text =" Score : " +  score; 
-            totalTime = 0;
-        }
+       
 
+        CalculateScore();
 
         if (score == 0)
         {
@@ -84,37 +80,43 @@ public class UIMang : MonoBehaviour
     }
 
 
+    public void CalculateScore()
+    {
+        score = Mathf.Max(0, 10 - (int)(totalTime / 10));
+        textScore.text = " Score : " + score;
+    }
+
 
    
 
 
 
-    public void UpdateBallIcons()
-    {
+    //public void UpdateBallIcons()
+    //{
 
 
-        int ballCount = LevelManager.Instance.totalBalls;
+    //    int ballCount = LevelManager.Instance.totalBalls;
 
 
-        for (int i = 0; i < ballCount; i++)
-        {
+    //    for (int i = 0; i < ballCount; i++)
+    //    {
 
-            if (i < ballCount)
-            {
-                allBallImg[i].GetComponent<Image>().color = Color.white;
-
-
-            }
-            else
-            {
-                allBallImg[i].GetComponent<Image>().color = Color.yellow;
-
-            }
+    //        if (i < ballCount)
+    //        {
+    //            allBallImg[i].GetComponent<Image>().color = Color.white;
 
 
-        }
+    //        }
+    //        else
+    //        {
+    //            allBallImg[i].GetComponent<Image>().color = Color.yellow;
 
-    }
+    //        }
+
+
+    //    }
+
+    //}
 
 
 }

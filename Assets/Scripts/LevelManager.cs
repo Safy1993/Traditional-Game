@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] arrowLevel1 ;
 
     public GameObject[] arrowLevel2;
-    public Button nextLevel; 
+    public GameObject nextLevel; 
 
     public static LevelManager Instance;
 
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
         {
             arrowLevel2[i].SetActive(false);
         }
-        nextLevel.enabled = false; 
+        
 
         Instance = this;
 
