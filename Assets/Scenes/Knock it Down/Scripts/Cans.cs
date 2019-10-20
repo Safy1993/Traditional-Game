@@ -41,12 +41,7 @@ public class Cans : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            hasFallen = true;
-            GameManagers.instance.GroundFallenCheck();
-            UIManagers.instance.UpdateScore();
-        }
+
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -55,6 +50,14 @@ public class Cans : MonoBehaviour
         {
             return;
         }
+
+        if (collision.collider.CompareTag("Finish"))
+        {
+            hasFallen = true;
+            GameManagers.instance.GroundFallenCheck();
+            UIManagers.instance.UpdateScore();
+        }
+
         if (collision.gameObject.name == "Ball")
         {
             hasColided = true;

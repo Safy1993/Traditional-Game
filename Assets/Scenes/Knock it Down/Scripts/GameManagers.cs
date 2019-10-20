@@ -81,14 +81,14 @@ public class GameManagers : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 
 
-        if (Input.GetMouseButton(0))
-        {
-            //shoot the ball
-            //ball.GetComponent<Animator>().enabled = false;
-            ball.transform.position = new Vector3(mousePos.x, ball.transform.position.y, ball.transform.position.z);
+        // if (Input.GetMouseButton(0))
+        // {
+        //shoot the ball
+        //ball.GetComponent<Animator>().enabled = false;
+        // ball.transform.position = new Vector3(mousePos.x, ball.transform.position.y, ball.transform.position.z);
 
 
-        }
+        // }
 
         switch (CurrentState)
         {
@@ -99,7 +99,7 @@ public class GameManagers : MonoBehaviour
                 //ball.GetComponent<Animator>().enabled = false;
                 ball.GetComponent<Rigidbody>().isKinematic = true;
 
-                
+
 
                 break;
             case GameState.Inhand:
@@ -159,7 +159,7 @@ public class GameManagers : MonoBehaviour
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
-                    ball.GetComponent<Rigidbody>().AddForce(dir * ballForce, ForceMode.Impulse);
+                    ball.GetComponent<Rigidbody>().AddForce(dir.normalized * ballForce);
                     CurrentState = GameState.Shot;
 
                     shotedBall++;
@@ -258,9 +258,9 @@ public class GameManagers : MonoBehaviour
         currentLevel++;
 
         if (currentLevel > allLevels.Length) currentLevel = 0;
-        
+
         yield return new WaitForSeconds(1.0f);
-       UIManagers.instance.UpdateScoreMultiplier();
+        UIManagers.instance.UpdateScoreMultiplier();
 
         shotedBall = 0;
 
