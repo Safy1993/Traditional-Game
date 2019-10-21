@@ -25,4 +25,10 @@ public class NextLevel : MonoBehaviour
 
     }
 
+
+    public void backtomainmenue()
+    {
+        SceneManager.LoadScene("MainMnue");
+    }
+
 }
