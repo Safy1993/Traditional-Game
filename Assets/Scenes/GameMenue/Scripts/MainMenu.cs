@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Toggle audioToggle;
+    public GameObject chooseGame;
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Another");
+        chooseGame.SetActive(true);
+
         HitButtonSound();
 
 
@@ -28,6 +30,22 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit!");
         Application.Quit();
      
+    }
+
+    public void MathrabGame()
+    {
+        SceneManager.LoadScene("MathrupGame");
+        HitButtonSound();
+
+
+    }
+
+    public void AmperGame()
+    {
+        SceneManager.LoadScene("AmperGame");
+        HitButtonSound();
+
+
     }
 
     public void MuteSounds()
@@ -45,6 +63,25 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.HitSoundEffect();
     }
 
+    //private void Update()
+    //{
+    //    if (Input.GetKey(KeyCode.A))
+    //    {
+    //        chooseGame.SetActive(true);
 
-    
+    //        HitButtonSound();
+    //    }
+    //    if (Input.GetKey(KeyCode.B))
+    //    {
+    //        if (audioToggle.isOn)
+    //            PlayerPrefs.SetInt("Mute", 1);
+
+    //        else
+    //            PlayerPrefs.SetInt("Mute", 0);
+    //    }
+
+    //}
+
+
+
 }
