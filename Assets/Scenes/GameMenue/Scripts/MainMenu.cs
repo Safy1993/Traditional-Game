@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public Toggle audioToggle;
     public GameObject chooseGame;
+    public GameObject MainMenue;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
         chooseGame.SetActive(true);
 
         HitButtonSound();
+        MainMenue.SetActive(false);
 
 
     }
@@ -34,8 +36,11 @@ public class MainMenu : MonoBehaviour
 
     public void MathrabGame()
     {
+        
+
         SceneManager.LoadScene("MathrupGame");
         HitButtonSound();
+        
 
 
     }
@@ -58,6 +63,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("Mute", 0);
         
     }
+
     public void HitButtonSound()
     {
         AudioManager.Instance.HitSoundEffect();

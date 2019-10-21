@@ -74,4 +74,14 @@ public class UIMang : MonoBehaviour
         endText.enabled = true; 
         GameOverText.SetActive(true);
     }
+    public void BackToMainMenue()
+    {
+
+
+        SceneManager.LoadScene("MenuScene");
+
+
+
+
+    }
 }

@@ -189,5 +189,15 @@ public class UIManagers : MonoBehaviour
 
         
     }
-   
+    public void BackToMainMenue()
+    {
+
+
+        SceneManager.LoadScene("MenuScene");
+        
+
+
+
+    }
+
 }
