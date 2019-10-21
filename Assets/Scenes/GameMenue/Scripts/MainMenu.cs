@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         int mute = PlayerPrefs.GetInt("Mute", 0);
         audioToggle.isOn = mute == 1;
+
     }
 
     public void PlayGame()
@@ -69,24 +70,9 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.HitSoundEffect();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKey(KeyCode.A))
-    //    {
-    //        chooseGame.SetActive(true);
+   
 
-    //        HitButtonSound();
-    //    }
-    //    if (Input.GetKey(KeyCode.B))
-    //    {
-    //        if (audioToggle.isOn)
-    //            PlayerPrefs.SetInt("Mute", 1);
 
-    //        else
-    //            PlayerPrefs.SetInt("Mute", 0);
-    //    }
-
-    //}
 
 
 

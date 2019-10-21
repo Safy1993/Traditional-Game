@@ -53,13 +53,9 @@ public class GameManagers : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-    }
-
-    void Start()
-    {
         CurrentState = GameState.gameover;
-
     }
+
     public void StartGame()
     {
         CurrentState = GameState.Idle;
@@ -114,25 +110,25 @@ public class GameManagers : MonoBehaviour
                 if (xrot < -0.7)
                 {
                     checkX = true;
-                    timer = 0;
+                    //timer = 0;
                 }
-                else if (checkX && xrot > -0.2 && timer < 1f)
+                else if (checkX && xrot > -0.2f) //&& timer < 1f)
                 {
 
 
 
-                    float force = (1 / timer) * 20;
+                    //float force = (1 / timer) * 20;
 
-                    UIManagers.instance.gearRotationText.text = " Force =  [ " + force + " ]";
+                    //UIManagers.instance.gearRotationText.text = " Force =  [ " + force + " ]";
 
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
-                    ball.GetComponent<Rigidbody>().AddForce(handController.forward * force, ForceMode.Impulse);
+                    ball.GetComponent<Rigidbody>().AddForce(handController.forward * 1200);
 
 
                     CurrentState = GameState.Shot;
-                    xrot = -1;
+                    //xrot = -1;
                     shotedBall++;
                     totalBalls--;
                     UIManagers.instance.UpdateBallIcons();
@@ -148,10 +144,10 @@ public class GameManagers : MonoBehaviour
 
                     checkX = false;
                 }
-                else if (checkX)
-                {
-                    timer += Time.deltaTime;
-                }
+                //else if (checkX)
+                //{
+                //    timer += Time.deltaTime;
+                //}
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -171,7 +167,7 @@ public class GameManagers : MonoBehaviour
                     {
                         //check gameoevr
                         print("Game Over");
-                        StartCoroutine(CheckGameOver());
+                        lastShot = true;
 
                     }
                 }
@@ -190,17 +186,7 @@ public class GameManagers : MonoBehaviour
 
                 if (gameTimer > 3)
                 {
-                    if (!lastShot)
-                    {
-                        CurrentState = GameState.Idle;
-                    }
-                    else
-                    {
-                        CurrentState = GameState.gameover;
-                        UIManagers.instance.gameOverUI.SetActive(true);
-                        lastShot = false;
-                    }
-                    gameTimer = 0;
+                    NextBall();
                 }
                 break;
             default:
@@ -213,6 +199,25 @@ public class GameManagers : MonoBehaviour
 
 
     }
+
+    private void NextBall()
+    {
+        if (!lastShot)
+        {
+            CurrentState = GameState.Idle;
+        }
+        else
+        {
+            CurrentState = GameState.gameover;
+
+            UIManagers.instance.gameOverUI.SetActive(true);
+            UIManagers.instance.HightScore();
+
+            lastShot = false;
+        }
+        gameTimer = 0;
+    }
+
     public void GroundFallenCheck()
     {
         if (AllGrounded())
@@ -242,7 +247,7 @@ public class GameManagers : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (CurrentState == GameState.Shot)
+        if (CurrentState == GameState.Shot || CurrentState == GameState.gameover)
         {
             StartCoroutine(LoadNextLevelRoutine());
             CurrentState = GameState.Idle;
@@ -251,8 +256,11 @@ public class GameManagers : MonoBehaviour
     }
     IEnumerator LoadNextLevelRoutine()
     {
+        UIManager.instance.GameUI.SetActive(false);
+        UIManagers.instance.YouWin(true);
         Debug.Log("Loding next level");
         yield return new WaitForSeconds(1.5f);
+        UIManagers.instance.YouWin(false);
         UIManagers.instance.ShowBlackFade();
         allLevels[currentLevel].SetActive(false);
         currentLevel++;
@@ -272,6 +280,8 @@ public class GameManagers : MonoBehaviour
 
         ballScript.RepoitionBall();
 
+        UIManager.instance.GameUI.SetActive(true);
+
     }
     public void AddExtraBall(int count)
     {
@@ -284,19 +294,19 @@ public class GameManagers : MonoBehaviour
         }
 
     }
-    IEnumerator CheckGameOver()
-    {
-        yield return new WaitForSeconds(2f);
-        if (AllGrounded() == false)
-        {
+    //IEnumerator CheckGameOver()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    if (AllGrounded() == false)
+    //    {
 
-            UIManagers.instance.gameOverUI.SetActive(true);
-            UIManagers.instance.HightScore();
-            CurrentState = GameState.gameover;
+    //        UIManagers.instance.gameOverUI.SetActive(true);
+    //        
+    //        CurrentState = GameState.gameover;
 
-        }
+    //    }
 
 
-    }
+    //}
 
 }

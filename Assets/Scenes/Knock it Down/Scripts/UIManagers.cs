@@ -17,6 +17,8 @@ public class UIManagers : MonoBehaviour
     public GameObject GameUI;
     public GameObject HomeUI;
     public GameObject gameScence;
+
+    public GameObject YouWinPanel;
     
     public int score;
     public Text scoreText;
@@ -68,6 +70,11 @@ public class UIManagers : MonoBehaviour
         if (Input.GetKey(KeyCode.Return))
         {
             StartCoroutine(StartRoutine());
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            B_Restart();
         }
     }
 
@@ -170,13 +177,11 @@ public class UIManagers : MonoBehaviour
     }
     IEnumerator RestartStartRoutine()
     {
-        
-       
+
         ShowBlackFade();
         isRestart = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
-      
+        SceneManager.LoadScene(0);      
     }
     public void HightScore()
     {
@@ -192,12 +197,13 @@ public class UIManagers : MonoBehaviour
     public void BackToMainMenue()
     {
 
-
         SceneManager.LoadScene("MenuScene");
         
 
-
-
     }
 
+    internal void YouWin(bool v)
+    {
+        YouWinPanel.SetActive(v);
+    }
 }
