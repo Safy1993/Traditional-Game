@@ -19,7 +19,7 @@ public class BallControl : MonoBehaviour
 
             UIMang.instance.endText.text = "you are win";
             UIMang.instance.endText.enabled = true;
-            UIMang.instance.WinText.SetActive(true);
+         
 
             PlayerPrefs.SetInt("Score", UIMang.instance.score);
 

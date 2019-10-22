@@ -8,9 +8,7 @@ using UnityEngine.UI;
 public class UIMang : MonoBehaviour
 {
     public static UIMang instance;
-   // public GameObject[] allBallImg;
-    public GameObject GameOverText;
-    public GameObject WinText;
+
     public Text gearRotation;
     public Text endText;
     public Text timer;
@@ -59,7 +57,7 @@ public class UIMang : MonoBehaviour
     {
         endText.text = "Game Over";
         endText.enabled = true;
-        GameOverText.SetActive(true);
+      
     }
 
 
@@ -90,33 +88,6 @@ public class UIMang : MonoBehaviour
 
 
 
-
-    //public void UpdateBallIcons()
-    //{
-
-
-    //    int ballCount = LevelManager.Instance.totalBalls;
-
-
-    //    for (int i = 0; i < ballCount; i++)
-    //    {
-
-    //        if (i < ballCount)
-    //        {
-    //            allBallImg[i].GetComponent<Image>().color = Color.white;
-
-
-    //        }
-    //        else
-    //        {
-    //            allBallImg[i].GetComponent<Image>().color = Color.yellow;
-
-    //        }
-
-
-    //    }
-
-    //}
 
 
 }
