@@ -99,7 +99,7 @@ public class GameManagers : MonoBehaviour
 
                 break;
             case GameState.Inhand:
-                float xrot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x;
+                float xrot = Mathf.Abs(OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x);
                 //if (Input.GetKey(KeyCode.S))
                 //{
                 //    xrot += Time.deltaTime * 5;
@@ -107,12 +107,12 @@ public class GameManagers : MonoBehaviour
 
                 UIManagers.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
-                if (xrot < -0.7)
+                if (xrot < 0.7)
                 {
                     checkX = true;
-                    //timer = 0;
+                    timer = 0;
                 }
-                else if (checkX && xrot > -0.2f) //&& timer < 1f)
+                else if (checkX && xrot > 0.2f && timer < 1f)
                 {
 
 
@@ -124,7 +124,9 @@ public class GameManagers : MonoBehaviour
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
-                    ball.GetComponent<Rigidbody>().AddForce(handController.forward * 1200);
+                    Vector3 FinalDir = dir + handController.forward;
+
+                    ball.GetComponent<Rigidbody>().AddForce(FinalDir.normalized * 2000);
 
 
                     CurrentState = GameState.Shot;
@@ -144,10 +146,10 @@ public class GameManagers : MonoBehaviour
 
                     checkX = false;
                 }
-                //else if (checkX)
-                //{
-                //    timer += Time.deltaTime;
-                //}
+                else if (checkX)
+                {
+                    timer += Time.deltaTime;
+                }
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -155,7 +157,7 @@ public class GameManagers : MonoBehaviour
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
-                    ball.GetComponent<Rigidbody>().AddForce(dir.normalized * ballForce);
+                    ball.GetComponent<Rigidbody>().AddForce(dir.normalized * 2000);
                     CurrentState = GameState.Shot;
 
                     shotedBall++;
@@ -172,13 +174,13 @@ public class GameManagers : MonoBehaviour
                     }
                 }
 
-                float dist;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (plane.Raycast(ray, out dist))
-                {
-                    Vector3 point = ray.GetPoint(dist);
-                    Target.position = new Vector3(point.x, point.y, 0);
-                }
+                //float dist;
+                //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                //if (plane.Raycast(ray, out dist))
+                //{
+                //    Vector3 point = ray.GetPoint(dist);
+                //    //Target.position = new Vector3(point.x, point.y, 0);
+                //}
 
                 break;
             case GameState.Shot:
