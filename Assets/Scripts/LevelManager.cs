@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
    public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
-    public int totalBalls = 10;
+ 
 
     public GameObject[] arrowLevel1 ;
 
@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour
                     if (timer < 0)
                     {
                        
-                        if (totalBalls == 0)
+                        if (UIMang.instance.score == 0)
                         {
                             UIMang.instance.ShowGameOver();
                         }
@@ -126,20 +126,5 @@ public class LevelManager : MonoBehaviour
         CurrentState = PutterState.shooting;
     }
 
-    public void onNextLevel()
-    {
-
-        SceneManager.LoadScene("GameL1");
-        
-        for (int i = 0; i < arrowLevel2.Length; i++)
-        {
-            arrowLevel2[i].SetActive(true);
-        }
-
-        for (int i = 0; i < arrowLevel1.Length; i++)
-        {
-            arrowLevel1[i].SetActive(false);
-        }
-
-    }
+    
 }

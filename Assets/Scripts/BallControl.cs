@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BallControl : MonoBehaviour
 {
 
-    public GameObject WinText;
+
     public int totalScore; 
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +24,8 @@ public class BallControl : MonoBehaviour
             PlayerPrefs.SetInt("Score", UIMang.instance.score);
 
             LevelManager.Instance.nextLevel.SetActive(true);
+
+
             for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
             {
                 LevelManager.Instance.arrowLevel1[i].SetActive(false);
