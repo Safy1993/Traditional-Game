@@ -24,6 +24,8 @@ public class Cans : MonoBehaviour
     public GameObject blastFX;
     public GameObject lifeFx;
     public GameObject duseFX;
+
+    bool once;
     //public ParticleSystem MuzzuleFlash;
     //MuzzuleFlash.Play();
 
@@ -66,9 +68,12 @@ public class Cans : MonoBehaviour
 
 
                 case CanType.bomb:
-                    
 
+                    if (!once)
+                    {
+                        once = true;
                         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+                        Instantiate(blastFX, transform.position, Quaternion.identity);
 
                         foreach (Collider c in colliders)
                         {
@@ -77,12 +82,9 @@ public class Cans : MonoBehaviour
                             {
                                 rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
                             }
-
-
-
-                            Instantiate(blastFX, transform.position, Quaternion.identity);
                         }
-                        break;
+                    }
+                    break;
 
 
 
@@ -98,8 +100,12 @@ public class Cans : MonoBehaviour
                     break;
                 case CanType.normal:
                     {
+                        if (!once)
+                        {
+                            once = true;
 
-                        Instantiate(duseFX, transform.position, Quaternion.identity);
+                            Instantiate(duseFX, transform.position, Quaternion.identity);
+                        }
 
                     }
                     break;

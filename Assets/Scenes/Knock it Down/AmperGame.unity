@@ -22209,6 +22209,12 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6695709137171641263, guid: 5f3f0634757191242adb494c4e1eb5ff,
+        type: 3}
+      propertyPath: duseFX
+      value: 
+      objectReference: {fileID: 5794691446650640814, guid: 818ea488120c9b546afa98ca7aa7a244,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3f0634757191242adb494c4e1eb5ff, type: 3}
 --- !u!218 &4425356688315691660
