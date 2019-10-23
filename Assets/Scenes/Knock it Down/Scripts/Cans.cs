@@ -24,6 +24,8 @@ public class Cans : MonoBehaviour
     public GameObject blastFX;
     public GameObject lifeFx;
     public GameObject duseFX;
+
+    bool once;
     //public ParticleSystem MuzzuleFlash;
     //MuzzuleFlash.Play();
 
@@ -41,12 +43,7 @@ public class Cans : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            hasFallen = true;
-            GameManagers.instance.GroundFallenCheck();
-            UIManagers.instance.UpdateScore();
-        }
+
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -55,6 +52,14 @@ public class Cans : MonoBehaviour
         {
             return;
         }
+
+        if (collision.collider.CompareTag("Finish"))
+        {
+            hasFallen = true;
+            GameManagers.instance.GroundFallenCheck();
+            UIManagers.instance.UpdateScore();
+        }
+
         if (collision.gameObject.name == "Ball")
         {
             hasColided = true;
@@ -63,9 +68,12 @@ public class Cans : MonoBehaviour
 
 
                 case CanType.bomb:
-                    
 
+                    if (!once)
+                    {
+                        once = true;
                         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+                        Instantiate(blastFX, transform.position, Quaternion.identity);
 
                         foreach (Collider c in colliders)
                         {
@@ -74,12 +82,9 @@ public class Cans : MonoBehaviour
                             {
                                 rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
                             }
-
-
-
-                            Instantiate(blastFX, transform.position, Quaternion.identity);
                         }
-                        break;
+                    }
+                    break;
 
 
 
@@ -95,8 +100,12 @@ public class Cans : MonoBehaviour
                     break;
                 case CanType.normal:
                     {
+                        if (!once)
+                        {
+                            once = true;
 
-                        Instantiate(duseFX, transform.position, Quaternion.identity);
+                            Instantiate(duseFX, transform.position, Quaternion.identity);
+                        }
 
                     }
                     break;

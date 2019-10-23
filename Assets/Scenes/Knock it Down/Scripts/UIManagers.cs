@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class UIManagers : MonoBehaviour
 {
     public static UIManagers instance;
-    public GameObject[] allBallImg;
+    public Image[] allBallImg;
 
     public Sprite enabledBallImg;
     public Sprite diabledBallImg;
@@ -17,6 +17,8 @@ public class UIManagers : MonoBehaviour
     public GameObject GameUI;
     public GameObject HomeUI;
     public GameObject gameScence;
+
+    public GameObject YouWinPanel;
     
     public int score;
     public Text scoreText;
@@ -69,6 +71,11 @@ public class UIManagers : MonoBehaviour
         {
             StartCoroutine(StartRoutine());
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            B_Restart();
+        }
     }
 
     public void UpdateBallIcons()
@@ -78,11 +85,11 @@ public class UIManagers : MonoBehaviour
         {
             if (i<ballCount)
             {
-                allBallImg[i].GetComponent<Image>().sprite = enabledBallImg;
+                allBallImg[i].sprite = enabledBallImg;
             }
             else
             {
-                allBallImg[i].GetComponent<Image>().sprite = diabledBallImg;
+                allBallImg[i].sprite = diabledBallImg;
             }
 
         }
@@ -111,7 +118,7 @@ public class UIManagers : MonoBehaviour
     public void B_Back_Yes()
     {
         Time.timeScale =1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     public void B_Back_No()
     {
@@ -170,13 +177,11 @@ public class UIManagers : MonoBehaviour
     }
     IEnumerator RestartStartRoutine()
     {
-        
-       
+
         ShowBlackFade();
         isRestart = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
-      
+        SceneManager.LoadScene(0);      
     }
     public void HightScore()
     {
@@ -189,5 +194,16 @@ public class UIManagers : MonoBehaviour
 
         
     }
-   
+    public void BackToMainMenue()
+    {
+
+        SceneManager.LoadScene("MenuScene");
+        
+
+    }
+
+    internal void YouWin(bool v)
+    {
+        YouWinPanel.SetActive(v);
+    }
 }

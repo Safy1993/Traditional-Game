@@ -84,10 +84,11 @@ public class UIMang : MonoBehaviour
         textScore.text = " Score : " + score;
     }
 
+    public void BackToMainMenue()
+    {
 
 
+        SceneManager.LoadScene("MenuScene");
 
-
-
-
+    }
 }
