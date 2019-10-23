@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -39,6 +40,7 @@ public class GameManagers : MonoBehaviour
     public Transform handController;
 
     bool lastShot;
+
     // Start is called before the first frame update
     //float xrot = -1;
 
@@ -59,6 +61,7 @@ public class GameManagers : MonoBehaviour
     public void StartGame()
     {
         CurrentState = GameState.Idle;
+
     }
 
     // Update is called once per frame
@@ -133,7 +136,7 @@ public class GameManagers : MonoBehaviour
                     //xrot = -1;
                     shotedBall++;
                     totalBalls--;
-                  
+
 
 
                     if (totalBalls <= 0)
@@ -162,10 +165,6 @@ public class GameManagers : MonoBehaviour
 
                     shotedBall++;
                     totalBalls--;
-                  
-                   
-
-
                     if (totalBalls <= 0)
                     {
                         //check gameoevr
@@ -189,10 +188,19 @@ public class GameManagers : MonoBehaviour
 
                 if (gameTimer > 3)
                 {
-                    if (AllGrounded())
+                    int score;
+                    if (AllGrounded(out score))
                     {
+
                         // win
-                        LoadNextLevel();
+                        if (currentLevel < allLevels.Length - 1)
+                            LoadNextLevel();
+                        else
+                        {
+                            //game finished 
+                            UIManagers.instance.congraUI.SetActive(true);
+                            UIManagers.instance.congraUI.SetActive(true);
+                        }
                     }
                     else
                     {
@@ -200,8 +208,10 @@ public class GameManagers : MonoBehaviour
                             NextBall();
                         else
                             UIManagers.instance.gameOverUI.SetActive(true);
-                        
+
                     }
+
+                    UIManagers.instance.scoreText.text = score.ToString();
                 }
                 break;
             default:
@@ -246,8 +256,9 @@ public class GameManagers : MonoBehaviour
 
     //}
 
-    bool AllGrounded()
+    bool AllGrounded(out int score)
     {
+        score = 0;
         Transform canSet = allLevels[currentLevel].transform;
         foreach (Transform t in canSet)
         {
@@ -256,7 +267,11 @@ public class GameManagers : MonoBehaviour
                 return false;
 
             }
+
+            score++;
         }
+
+
 
         return true;
     }
@@ -294,7 +309,13 @@ public class GameManagers : MonoBehaviour
         allLevels[currentLevel].SetActive(false);
         currentLevel++;
 
-        if (currentLevel > allLevels.Length) currentLevel = 0;
+        if (currentLevel == allLevels.Length)
+        {
+            //UIManagers.instance.congraUI.SetActive(true);
+            
+           // SceneManager.LoadScene("0");
+            
+        }
 
         yield return new WaitForSeconds(1.0f);
         UIManagers.instance.UpdateScoreMultiplier();
@@ -312,7 +333,7 @@ public class GameManagers : MonoBehaviour
         UIManagers.instance.GameUI.SetActive(true);
 
         CurrentState = GameState.Idle;
-        
+
 
     }
     public void AddExtraBall(int count)
@@ -327,7 +348,7 @@ public class GameManagers : MonoBehaviour
 
     }
     //IEnumerator CheckGameOver()
-    //{
+
     //    yield return new WaitForSeconds(2f);
     //    if (AllGrounded() == false)
     //    {

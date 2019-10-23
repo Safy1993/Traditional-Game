@@ -33,6 +33,7 @@ public class UIManagers : MonoBehaviour
 
     public GameObject PausePanel;
     public GameObject gameOverUI;
+    public GameObject congraUI;
 
     public Text gearRotationText;
 

@@ -49,17 +49,7 @@ public class Cans : MonoBehaviour
        
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag=="can")
-        {
-        
-            UIManagers.instance.UpdateScore();
-        }
-
-
-
-    }
+    
 
 
 
