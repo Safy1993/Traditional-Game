@@ -7,13 +7,17 @@ using UnityEngine.UI;
 
 public class UIMang : MonoBehaviour
 {
-    public static UIMang instance; 
-    public GameObject[] allBallImg;
-    public GameObject GameOverText;
-    public GameObject WinText;
-    public Text gearRotation; 
-    public Text endText; 
+    public static UIMang instance;
 
+    public Text gearRotation;
+    public Text endText;
+    public Text timer;
+    public Text textScore ;
+
+    int minutes;
+    int seconds;
+    public float totalTime = 0f;
+    public int score = 10 ; 
 
     private void Awake()
     {
@@ -28,50 +32,62 @@ public class UIMang : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        totalTime += Time.deltaTime;
+        UpdateLevelTimer(totalTime);
 
-    public void UpdateBallIcons()
-    {
-        //Debug.Log("UpdateBallIcons");
+       
 
-        int ballCount = LevelManager.Instance.totalBalls;
-        //Debug.Log("ballCount  : " + ballCount);
+        CalculateScore();
 
-
-        for (int i = 0; i < ballCount; i++)
+        if (score == 0)
         {
-           
-            if (i < ballCount)
-            {
-                allBallImg[i].GetComponent<Image>().color = Color.white;
-                //Debug.Log("white");
-
-            }
-            else
-            {
-                allBallImg[i].GetComponent<Image>().color = Color.yellow;
-                //Debug.Log("gray");
-            }
-
-
+            ShowGameOver();
+           LevelManager.Instance.CurrentState = PutterState.Idle;
         }
-
     }
+
+
+
 
     internal void ShowGameOver()
     {
         endText.text = "Game Over";
-        endText.enabled = true; 
-        GameOverText.SetActive(true);
+        endText.enabled = true;
+      
     }
+
+
+    public void UpdateLevelTimer(float totalSeconds)
+    {
+        minutes = Mathf.FloorToInt(totalSeconds / 60f);
+        seconds = Mathf.RoundToInt(totalSeconds % 60f);
+
+        string formatedSeconds = seconds.ToString();
+
+        if (seconds == 60)
+        {
+            seconds = 0;
+            minutes += 1;
+        }
+
+        timer.text ="Time " +  minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+
+    public void CalculateScore()
+    {
+        score = Mathf.Max(0, 10 - (int)(totalTime / 10));
+        textScore.text = " Score : " + score;
+    }
+
+
+
+
+
+
+
 }

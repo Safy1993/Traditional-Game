@@ -19,9 +19,9 @@ public class PutterForce : MonoBehaviour
            ballforce= GearController.Instance.force;
             other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
           
-            LevelManager.Instance.totalBalls--;
+            
          
-            UIMang.instance.UpdateBallIcons();
+           
 
 
         }

@@ -19,12 +19,12 @@ public class LevelManager : MonoBehaviour
    public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
-    public int totalBalls = 10;
+ 
 
     public GameObject[] arrowLevel1 ;
 
     public GameObject[] arrowLevel2;
-    public Button nextLevel; 
+    public GameObject nextLevel; 
 
     public static LevelManager Instance;
 
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
         {
             arrowLevel2[i].SetActive(false);
         }
-        nextLevel.enabled = false; 
+        
 
         Instance = this;
 
@@ -63,9 +63,9 @@ public class LevelManager : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    //Debug.Log("upArrow KeyDown");
+                   
                     Shoot();
-                    //numOfShooting--;
+                  
                 }
 
 
@@ -76,8 +76,7 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.shooting:
 
-
-                //print("shooting " + ball.velocity.magnitude);
+                
 
                 if (ball.velocity.magnitude >= 0.01f)
                 {
@@ -90,17 +89,17 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.following:
 
-                //print("following " + ball.velocity.magnitude);
+               
 
                 if (ball.velocity.magnitude <= 0.05f)
                 {
-                   // print("following ball.velocity.magnitude < 0 ");
+             
                    timer -= Time.deltaTime;
 
                     if (timer < 0)
                     {
                        
-                        if (totalBalls == 0)
+                        if (UIMang.instance.score == 0)
                         {
                             UIMang.instance.ShowGameOver();
                         }
@@ -127,20 +126,4 @@ public class LevelManager : MonoBehaviour
         CurrentState = PutterState.shooting;
     }
 
-    public void onNextLevel()
-    {
-
-        SceneManager.LoadScene("GameL1");
-
-        for (int i = 0; i < arrowLevel2.Length; i++)
-        {
-            arrowLevel2[i].SetActive(true);
-        }
-
-        for (int i = 0; i < arrowLevel1.Length; i++)
-        {
-            arrowLevel1[i].SetActive(false);
-        }
-
-    }
 }
