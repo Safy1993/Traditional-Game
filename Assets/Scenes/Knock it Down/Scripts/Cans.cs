@@ -26,13 +26,15 @@ public class Cans : MonoBehaviour
     public GameObject duseFX;
 
     bool once;
+
+    Vector3 originalPos;
     //public ParticleSystem MuzzuleFlash;
     //MuzzuleFlash.Play();
 
     // Start is called before the first frame update
     void Start()
     {
-
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
@@ -41,79 +43,100 @@ public class Cans : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public bool IsMoved()
     {
-
+        return (transform.position - originalPos).magnitude > 0.2f;
+       
 
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (hasColided == true)
+        if (collision.collider.tag=="can")
         {
-            return;
-        }
-
-        if (collision.collider.CompareTag("Finish"))
-        {
-            hasFallen = true;
-            GameManagers.instance.GroundFallenCheck();
+        
             UIManagers.instance.UpdateScore();
         }
 
-        if (collision.gameObject.name == "Ball")
-        {
-            hasColided = true;
-            switch (type)
-            {
-
-
-                case CanType.bomb:
-
-                    if (!once)
-                    {
-                        once = true;
-                        Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
-                        Instantiate(blastFX, transform.position, Quaternion.identity);
-
-                        foreach (Collider c in colliders)
-                        {
-                            Rigidbody rb = c.GetComponent<Rigidbody>();
-                            if (rb != null)
-                            {
-                                rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
-                            }
-                        }
-                    }
-                    break;
-
-
-
-                case CanType.life:
-                    {
-
-                        GameManagers.instance.AddExtraBall(1);
-                        Instantiate(lifeFx, transform.position, Quaternion.identity);
-                        fx.SetActive(true);
-
-
-                    }
-                    break;
-                case CanType.normal:
-                    {
-                        if (!once)
-                        {
-                            once = true;
-
-                            Instantiate(duseFX, transform.position, Quaternion.identity);
-                        }
-
-                    }
-                    break;
-            }
-
-
-        }
 
 
     }
+
+
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+
+
+    //}
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (hasColided == true)
+    //    {
+    //        return;
+    //    }
+
+    //    if (collision.collider.CompareTag("Finish"))
+    //    {
+    //        hasFallen = true;
+    //        GameManagers.instance.GroundFallenCheck();
+    //        UIManagers.instance.UpdateScore();
+    //    }
+
+    //    if (collision.gameObject.name == "Ball")
+    //    {
+    //        hasColided = true;
+    //        switch (type)
+    //        {
+
+
+    //            case CanType.bomb:
+
+    //                if (!once)
+    //                {
+    //                    once = true;
+    //                    Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+    //                    Instantiate(blastFX, transform.position, Quaternion.identity);
+
+    //                    foreach (Collider c in colliders)
+    //                    {
+    //                        Rigidbody rb = c.GetComponent<Rigidbody>();
+    //                        if (rb != null)
+    //                        {
+    //                            rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
+    //                        }
+    //                    }
+    //                }
+    //                break;
+
+
+
+    //            case CanType.life:
+    //                {
+
+    //                    GameManagers.instance.AddExtraBall(1);
+    //                    Instantiate(lifeFx, transform.position, Quaternion.identity);
+    //                    fx.SetActive(true);
+
+
+    //                }
+    //                break;
+    //            case CanType.normal:
+    //                {
+    //                    if (!once)
+    //                    {
+    //                        once = true;
+
+    //                        Instantiate(duseFX, transform.position, Quaternion.identity);
+    //                    }
+
+    //                }
+    //                break;
+    //        }
+
+
+    //    }
+
+
+    //}
 }

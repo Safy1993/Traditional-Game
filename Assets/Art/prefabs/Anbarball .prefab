@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4407948202852945576}
   - component: {fileID: -2060185846532126355}
   m_Layer: 0
-  m_Name: ball 1
+  m_Name: 'Anbarball '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

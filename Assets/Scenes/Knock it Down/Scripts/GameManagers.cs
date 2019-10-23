@@ -133,7 +133,7 @@ public class GameManagers : MonoBehaviour
                     //xrot = -1;
                     shotedBall++;
                     totalBalls--;
-                    UIManagers.instance.UpdateBallIcons();
+                  
 
 
                     if (totalBalls <= 0)
@@ -162,7 +162,8 @@ public class GameManagers : MonoBehaviour
 
                     shotedBall++;
                     totalBalls--;
-                    UIManagers.instance.UpdateBallIcons();
+                  
+                   
 
 
                     if (totalBalls <= 0)
@@ -188,7 +189,19 @@ public class GameManagers : MonoBehaviour
 
                 if (gameTimer > 3)
                 {
-                    NextBall();
+                    if (AllGrounded())
+                    {
+                        // win
+                        LoadNextLevel();
+                    }
+                    else
+                    {
+                        if (!lastShot)
+                            NextBall();
+                        else
+                            UIManagers.instance.gameOverUI.SetActive(true);
+                        
+                    }
                 }
                 break;
             default:
@@ -220,45 +233,59 @@ public class GameManagers : MonoBehaviour
         gameTimer = 0;
     }
 
-    public void GroundFallenCheck()
-    {
-        if (AllGrounded())
-        {
-            //Load next Level
-            print("Load Next Level");
+    //public void GroundFallenCheck()
+    //{
+    //    if (AllGrounded())
+    //    {
+    //        //Load next Level
+    //        print("Load Next Level");
 
-            LoadNextLevel();
+    //        LoadNextLevel();
 
-        }
+    //    }
 
-    }
+    //}
 
     bool AllGrounded()
     {
         Transform canSet = allLevels[currentLevel].transform;
         foreach (Transform t in canSet)
         {
-            if (t.GetComponent<Cans>().hasFallen == false)
+            if (!t.GetComponent<Cans>().IsMoved())
             {
                 return false;
+
             }
         }
 
         return true;
     }
 
+    //bool AllGrounded()
+    //{
+    //    Transform canSet = allLevels[currentLevel].transform;
+    //    foreach (Transform t in canSet)
+    //    {
+    //        if (t.GetComponent<Cans>().hasFallen == false)
+    //        {
+    //            return false;
+    //        }
+    //    }
+
+    //    return true;
+    //}
+
     public void LoadNextLevel()
     {
-        if (CurrentState == GameState.Shot || CurrentState == GameState.gameover)
-        {
-            StartCoroutine(LoadNextLevelRoutine());
-            CurrentState = GameState.Idle;
+        StartCoroutine(LoadNextLevelRoutine());
+        //CurrentState = GameState.Idle;
+        CurrentState = GameState.gameover;
 
-        }
     }
+
     IEnumerator LoadNextLevelRoutine()
     {
-        UIManager.instance.GameUI.SetActive(false);
+        UIManagers.instance.GameUI.SetActive(false);
         UIManagers.instance.YouWin(true);
         Debug.Log("Loding next level");
         yield return new WaitForSeconds(1.5f);
@@ -282,7 +309,10 @@ public class GameManagers : MonoBehaviour
 
         ballScript.RepoitionBall();
 
-        UIManager.instance.GameUI.SetActive(true);
+        UIManagers.instance.GameUI.SetActive(true);
+
+        CurrentState = GameState.Idle;
+        
 
     }
     public void AddExtraBall(int count)
