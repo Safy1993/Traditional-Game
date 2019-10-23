@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     public GameObject chooseGame;
     public GameObject MainMenue;
 
+    public GameObject MainCanvas;
+    public GameObject midhrabGameObject;
+   // public GameObject AnbarGameObject;
+
     void Start()
     {
         int mute = PlayerPrefs.GetInt("Mute", 0);
@@ -37,11 +41,12 @@ public class MainMenu : MonoBehaviour
 
     public void MathrabGame()
     {
-        
 
-        SceneManager.LoadScene("MathrupGame");
+
+        midhrabGameObject.SetActive(true);
         HitButtonSound();
-        
+        MainCanvas.SetActive(false);
+
 
 
     }

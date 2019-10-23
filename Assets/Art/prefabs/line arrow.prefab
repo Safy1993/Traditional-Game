@@ -91,6 +91,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: arrowmesh
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: debba0bc0be0ba14da19c70abada5116,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: debba0bc0be0ba14da19c70abada5116,
         type: 3}
       propertyPath: m_LocalPosition.x

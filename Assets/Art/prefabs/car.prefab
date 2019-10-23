@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7921461547724507804}
   - component: {fileID: 4526722518412883557}
   m_Layer: 0
-  m_Name: carmesh
+  m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1204055331177902250
 Transform:
