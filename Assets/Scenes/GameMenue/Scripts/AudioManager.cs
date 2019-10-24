@@ -45,23 +45,23 @@ public class AudioManager : MonoBehaviour
     //1) Anber Game Start music
     public void AnberStartMusic()
     {
-        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+        audioSource.PlayOneShot(soundEffects[1], 0.5f);
     }
     //2)Hit can
-    public void HitNormaltCan()
+    public void HitCan()
     {
-        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+        audioSource.PlayOneShot(soundEffects[0], 0.5f);
     }
     
     //3)HitGround
     public void CanHitGround()
     {
-        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+        audioSource.PlayOneShot(soundEffects[5], 0.5f);
     }
     //4) NextLevel
     public void NextLevelSoundEffect()
     {
-        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+        audioSource.PlayOneShot(soundEffects[6], 0.5f);
     }
     //5) LastLevel
     public void LastLevelSoundEffect()
@@ -79,7 +79,7 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
     }
     //8 shoot Ball Sound
-    public void DFlayBallSoundEffect()
+    public void FlayBallSoundEffect()
     {
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
     }
@@ -88,17 +88,16 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
     }
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.HitNormaltCan();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
-        //AudioManager.Instance.AnberStartMusic();
+    //AudioManager.Instance.AnberStartMusic();
+    //AudioManager.Instance.HitCan();
+    //AudioManager.Instance.CanHitGround();
+    //AudioManager.Instance.NextLevelSoundEffect();
+    //AudioManager.Instance.LastLevelSoundEffect();
+    //AudioManager.Instance.ReduceBallSoundEffect();
+    //AudioManager.Instance.DoubalScoreSoundEffect();
+    //AudioManager.Instance.FlayBallSoundEffect();
+    //AudioManager.Instance.GameOverSoundEffect();
+    //AudioManager.Instance.AnberStartMusic();
 
 
 

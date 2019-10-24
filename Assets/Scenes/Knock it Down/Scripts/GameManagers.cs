@@ -59,6 +59,10 @@ public class GameManagers : MonoBehaviour
 
         CurrentState = GameState.gameover;
     }
+    public void Start()
+    {
+        //AudioManager.Instance.AnberStartMusic();
+    }
 
     public void StartGame()
     {
@@ -197,6 +201,7 @@ public class GameManagers : MonoBehaviour
 
                     if (AllGrounded(out score))
                     {
+                        print("increase score");
                         TotalScore += score;
                         // win
                         if (currentLevel < allLevels.Length - 1)
@@ -206,6 +211,7 @@ public class GameManagers : MonoBehaviour
                             //game finished 
                             UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.congraUI.SetActive(true);
+                            
                         }
                     }
                     else
@@ -214,10 +220,12 @@ public class GameManagers : MonoBehaviour
                             NextBall();
                         else
                             UIManagers.instance.gameOverUI.SetActive(true);
+                            AudioManager.Instance.AnberStartMusic();
 
                     }
 
                     UIManagers.instance.scoreText.text = (TotalScore + score).ToString();
+                    UIManagers.instance.highscoreText.text = TotalScore.ToString();
                 }
                 break;
             default:
