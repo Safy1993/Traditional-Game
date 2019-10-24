@@ -21,10 +21,39 @@ public class MainMenu : MonoBehaviour
 
     }
 
+     void Update()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            PlayGame();
+           
+        }
+        if (Input.GetKey(KeyCode.M))
+        {
+            MathrabGame();
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+
+        }
+
+        if (Input.GetKey(KeyCode.B))
+        {
+            backMainMenuMthrapGame();
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            MathrabGame();
+            Debug.Log("play again");
+        }
+
+    }
+
     public void PlayGame()
     {
         chooseGame.SetActive(true);
-
         HitButtonSound();
         MainMenue.SetActive(false);
 
@@ -47,7 +76,23 @@ public class MainMenu : MonoBehaviour
         HitButtonSound();
         MainCanvas.SetActive(false);
 
+    }
 
+    public void backMainMenuMthrapGame()
+    {
+
+        MainCanvas.SetActive(true);
+        midhrabGameObject.SetActive(false);
+        HitButtonSound();
+      
+    }
+
+    public void backMainMenuchooseGame()
+    {
+
+        MainCanvas.SetActive(true);
+        chooseGame.SetActive(false);
+        HitButtonSound();
 
     }
 
@@ -74,11 +119,6 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Instance.HitSoundEffect();
     }
-
-   
-
-
-
 
 
 }

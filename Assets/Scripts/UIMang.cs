@@ -13,7 +13,7 @@ public class UIMang : MonoBehaviour
     public Text endText;
     public Text timer;
     public Text textScore ;
-
+    public Text tuchRotat;
     int minutes;
     int seconds;
     public float totalTime = 0f;

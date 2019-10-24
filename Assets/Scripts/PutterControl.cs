@@ -17,6 +17,8 @@ public class PutterControl : MonoBehaviour
 
     public static PutterControl Instance;
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class PutterControl : MonoBehaviour
         Vector2 touvhInput = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad, OVRInput.Controller.RTrackedRemote);
         transform.Rotate(Vector3.up * touvhInput.x * 60 * Time.deltaTime);
 
+        UIMang.instance.tuchRotat.text = touvhInput.ToString();
     }
 
     public void Shoot()

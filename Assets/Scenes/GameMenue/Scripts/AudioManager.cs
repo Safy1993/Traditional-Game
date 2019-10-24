@@ -23,8 +23,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
-        
+        backgroundSound();
+
+
 
     }
 
@@ -39,6 +40,11 @@ public class AudioManager : MonoBehaviour
     public void ButtonHitSoundEffect()
     {
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+
+    public void backgroundSound()
+    {
+        audioSource.PlayOneShot(soundEffects[3], 0.5f);
     }
 
 
