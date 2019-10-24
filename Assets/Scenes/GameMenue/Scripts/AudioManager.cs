@@ -41,5 +41,73 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
     }
 
+    //Anbar Game Sound Effects 
+    //1) Anber Game Start music
+    public void AnberStartMusic()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //2)Hit can
+    public void HitNormaltCan()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    
+    //3)HitGround
+    public void CanHitGround()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //4) NextLevel
+    public void NextLevelSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //5) LastLevel
+    public void LastLevelSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //6) ReduceBall
+    public void ReduceBallSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //7)DoubalScore
+    public void DoubalScoreSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //8 shoot Ball Sound
+    public void DFlayBallSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    //11 Game Over Sound
+    public void GameOverSoundEffect()
+    {
+        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.HitNormaltCan();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+        //AudioManager.Instance.AnberStartMusic();
+
+
+
+
+
+
+
+
+
+
 
 }

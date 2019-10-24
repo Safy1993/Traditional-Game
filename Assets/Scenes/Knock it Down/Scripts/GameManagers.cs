@@ -41,6 +41,8 @@ public class GameManagers : MonoBehaviour
 
     bool lastShot;
 
+   public int TotalScore;
+ 
     // Start is called before the first frame update
     //float xrot = -1;
 
@@ -110,12 +112,12 @@ public class GameManagers : MonoBehaviour
 
                 UIManagers.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
-                if (xrot < 0.7)
+                if (xrot > 0.7)
                 {
                     checkX = true;
                     timer = 0;
                 }
-                else if (checkX && xrot > 0.2f && timer < 1f)
+                else if (checkX && xrot < 0.2f && timer < 1f)
                 {
 
 
@@ -135,9 +137,10 @@ public class GameManagers : MonoBehaviour
                     CurrentState = GameState.Shot;
                     //xrot = -1;
                     shotedBall++;
+                    UIManagers.instance.UpdateBallIcons();
                     totalBalls--;
 
-
+                   
 
                     if (totalBalls <= 0)
                     {
@@ -154,16 +157,18 @@ public class GameManagers : MonoBehaviour
                     timer += Time.deltaTime;
                 }
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && Application.platform == RuntimePlatform.WindowsEditor)
                 {
+                    print("update Ball");
                     //shoot the ball
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
                     ball.GetComponent<Rigidbody>().AddForce(dir.normalized * 2000);
                     CurrentState = GameState.Shot;
-
+                    UIManagers.instance.UpdateBallIcons();
                     shotedBall++;
+
                     totalBalls--;
                     if (totalBalls <= 0)
                     {
@@ -189,16 +194,17 @@ public class GameManagers : MonoBehaviour
                 if (gameTimer > 3)
                 {
                     int score;
+
                     if (AllGrounded(out score))
                     {
-
+                        TotalScore += score;
                         // win
                         if (currentLevel < allLevels.Length - 1)
                             LoadNextLevel();
                         else
                         {
                             //game finished 
-                            UIManagers.instance.congraUI.SetActive(true);
+                            UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.congraUI.SetActive(true);
                         }
                     }
@@ -211,7 +217,7 @@ public class GameManagers : MonoBehaviour
 
                     }
 
-                    UIManagers.instance.scoreText.text = score.ToString();
+                    UIManagers.instance.scoreText.text = (TotalScore + score).ToString();
                 }
                 break;
             default:
@@ -236,7 +242,8 @@ public class GameManagers : MonoBehaviour
             CurrentState = GameState.gameover;
 
             UIManagers.instance.gameOverUI.SetActive(true);
-            UIManagers.instance.HightScore();
+            //UIManagers.instance.HightScore();
+
 
             lastShot = false;
         }
@@ -256,7 +263,7 @@ public class GameManagers : MonoBehaviour
 
     //}
 
-    bool AllGrounded(out int score)
+    bool AllGrounded(out  int score)
     {
         score = 0;
         Transform canSet = allLevels[currentLevel].transform;
@@ -361,5 +368,16 @@ public class GameManagers : MonoBehaviour
 
 
     //}
+    public void HightScore()
+    {
+
+         
+        UIManagers.instance.highscoreText.text = "Your Score:" + TotalScore ;
+        
+        PlayerPrefs.SetInt("highscore", TotalScore);
+
+
+
+    }
 
 }

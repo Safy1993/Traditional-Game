@@ -46,10 +46,10 @@ public class Cans : MonoBehaviour
     public bool IsMoved()
     {
         return (transform.position - originalPos).magnitude > 0.2f;
-       
+
 
     }
-    
+
 
 
 
@@ -59,8 +59,8 @@ public class Cans : MonoBehaviour
 
 
     //}
-    //private void OnCollisionEnter(Collision collision)
-    //{
+    private void OnCollisionEnter(Collision collision)
+    {
     //    if (hasColided == true)
     //    {
     //        return;
@@ -73,60 +73,60 @@ public class Cans : MonoBehaviour
     //        UIManagers.instance.UpdateScore();
     //    }
 
-    //    if (collision.gameObject.name == "Ball")
-    //    {
-    //        hasColided = true;
-    //        switch (type)
-    //        {
+        if (collision.gameObject.name == "Ball")
+        {
+            hasColided = true;
+            switch (type)
+            {
 
 
-    //            case CanType.bomb:
+                case CanType.bomb:
 
-    //                if (!once)
-    //                {
-    //                    once = true;
-    //                    Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
-    //                    Instantiate(blastFX, transform.position, Quaternion.identity);
+                    if (!once)
+                    {
+                        once = true;
+                        Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
+    Instantiate(blastFX, transform.position, Quaternion.identity);
 
-    //                    foreach (Collider c in colliders)
-    //                    {
-    //                        Rigidbody rb = c.GetComponent<Rigidbody>();
-    //                        if (rb != null)
-    //                        {
-    //                            rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
-    //                        }
-    //                    }
-    //                }
-    //                break;
-
-
-
-    //            case CanType.life:
-    //                {
-
-    //                    GameManagers.instance.AddExtraBall(1);
-    //                    Instantiate(lifeFx, transform.position, Quaternion.identity);
-    //                    fx.SetActive(true);
+                        foreach (Collider c in colliders)
+                        {
+                            Rigidbody rb = c.GetComponent<Rigidbody>();
+                            if (rb != null)
+                            {
+                                rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
+                            }
+                        }
+                    }
+                    break;
 
 
-    //                }
-    //                break;
-    //            case CanType.normal:
-    //                {
-    //                    if (!once)
-    //                    {
-    //                        once = true;
 
-    //                        Instantiate(duseFX, transform.position, Quaternion.identity);
-    //                    }
+                case CanType.life:
+                    {
 
-    //                }
-    //                break;
-    //        }
+                        GameManagers.instance.AddExtraBall(1);
+                        Instantiate(lifeFx, transform.position, Quaternion.identity);
+fx.SetActive(true);
 
 
-    //    }
+                    }
+                    break;
+                case CanType.normal:
+                    {
+                        if (!once)
+                        {
+                            once = true;
+
+                            Instantiate(duseFX, transform.position, Quaternion.identity);
+                        }
+
+                    }
+                    break;
+            }
 
 
-    //}
+        }
+
+
+    }
 }
