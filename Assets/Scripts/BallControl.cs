@@ -7,7 +7,10 @@ public class BallControl : MonoBehaviour
 {
 
 
-    public int totalScore; 
+    public int totalScore;
+
+
+  
 
     private void OnTriggerEnter(Collider other)
     {

@@ -14,6 +14,8 @@ public class UIMang : MonoBehaviour
     public Text timer;
     public Text textScore ;
     public Text tuchRotat;
+    public Text LevelNum;
+
     int minutes;
     int seconds;
     public float totalTime = 0f;
@@ -43,11 +45,11 @@ public class UIMang : MonoBehaviour
 
         CalculateScore();
 
-        if (score == 0)
-        {
-            ShowGameOver();
-           LevelManager.Instance.CurrentState = PutterState.Idle;
-        }
+        ////if (score == 0)
+        ////{
+        ////    ShowGameOver();
+        ////   LevelManager.Instance.CurrentState = PutterState.Idle;
+        ////}
     }
 
 
@@ -55,14 +57,16 @@ public class UIMang : MonoBehaviour
 
     internal void ShowGameOver()
     {
-        endText.text = "Game Over";
         endText.enabled = true;
+        endText.text = "Game Over";
+      
       
     }
 
 
     public void UpdateLevelTimer(float totalSeconds)
     {
+
         minutes = Mathf.FloorToInt(totalSeconds / 60f);
         seconds = Mathf.RoundToInt(totalSeconds % 60f);
 
@@ -86,9 +90,9 @@ public class UIMang : MonoBehaviour
 
     public void BackToMainMenue()
     {
-
-
         SceneManager.LoadScene("MenuScene");
 
     }
+
+
 }

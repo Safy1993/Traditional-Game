@@ -7,7 +7,13 @@ public class NextLevel : MonoBehaviour
 {
     // Start is called before the first frame update
 
-
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.N))
+        {
+            onNextLevel();
+        }
+    }
     public void onNextLevel()
     {
 

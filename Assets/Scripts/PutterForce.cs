@@ -17,13 +17,8 @@ public class PutterForce : MonoBehaviour
         {
             print("ball");
            ballforce= GearController.Instance.force;
-            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
-          
-            
+            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * 100);
          
-           
-
-
         }
 
     }

@@ -19,10 +19,7 @@ public class ScenesManager : MonoBehaviour
 
     public void playAgain()
     {
-
         SceneManager.LoadScene("GameL1");
-        //PutterForce.instance.totalBalls = 5;
-        //UIMang.instance.
-
+       
     }
 }
