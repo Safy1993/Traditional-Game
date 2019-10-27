@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/GameMenue/MainMenu.unity
+    guid: 2d5d1311d69f5ed44ae412e9bd1cf761
+  - enabled: 1
     path: Assets/Scenes/MathrabGame.unity
     guid: fc427a7c96236d14f8cbff1270e62096
+  - enabled: 1
+    path: Assets/Scenes/GameMenue/MathrabGamePrefabs.unity
+    guid: 3c83af71ada77c041aaac904cda018f7
   m_configObjects: {}

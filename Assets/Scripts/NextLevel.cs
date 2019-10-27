@@ -17,17 +17,19 @@ public class NextLevel : MonoBehaviour
     public void onNextLevel()
     {
 
-        SceneManager.LoadScene("GameL1");
+        SceneManager.LoadScene("MathrabGamePrefabs");
+
+        for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
+        {
+            LevelManager.Instance.arrowLevel1[i].SetActive(false);
+        }
 
         for (int i = 0; i < LevelManager.Instance.arrowLevel2.Length; i++)
         {
             LevelManager.Instance.arrowLevel2[i].SetActive(true);
         }
 
-        for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
-        {
-            LevelManager.Instance.arrowLevel1[i].SetActive(false);
-        }
+        
 
     }
 

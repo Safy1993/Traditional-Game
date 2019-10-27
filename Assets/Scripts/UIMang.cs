@@ -56,8 +56,7 @@ public class UIMang : MonoBehaviour
 
 
     internal void ShowGameOver()
-    {
-        endText.enabled = true;
+    { 
         endText.text = "Game Over";
       
       

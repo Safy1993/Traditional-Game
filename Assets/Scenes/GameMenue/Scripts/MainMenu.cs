@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject MainMenue;
 
     public GameObject MainCanvas;
-    public GameObject midhrabGameObject;
+   // public GameObject midhrabGameObject;
    // public GameObject AnbarGameObject;
 
     void Start()
@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         chooseGame.SetActive(true);
-        HitButtonSound();
+        //HitButtonSound();
         MainMenue.SetActive(false);
 
 
@@ -72,9 +72,11 @@ public class MainMenu : MonoBehaviour
     {
 
 
-        midhrabGameObject.SetActive(true);
-        HitButtonSound();
-        MainCanvas.SetActive(false);
+       // midhrabGameObject.SetActive(true);
+       // HitButtonSound();
+        // MainCanvas.SetActive(false);
+        SceneManager.LoadScene("MathrabGamePrefabs");
+
 
     }
 
@@ -82,7 +84,7 @@ public class MainMenu : MonoBehaviour
     {
 
         MainCanvas.SetActive(true);
-        midhrabGameObject.SetActive(false);
+      //  midhrabGameObject.SetActive(false);
         HitButtonSound();
       
     }
