@@ -24,8 +24,9 @@ public class LevelManager : MonoBehaviour
     public GameObject[] arrowLevel1 ;
 
     public GameObject[] arrowLevel2;
-    public GameObject nextLevel; 
-
+    public GameObject nextLevel;
+    public GameObject containerL1;
+    public GameObject containerL2;
     public static LevelManager Instance;
 
     int numOfShooting;

@@ -38,6 +38,7 @@ public class GearController : MonoBehaviour
             else if (checkX && xrot > 0.3 && timer < 1f)
             {
                 force = (1 / timer) * 10;
+                force = Mathf.Clamp(force, 20, 200);
                 //force = 70;
                 LevelManager.Instance.Shoot();
                 checkX = false;
