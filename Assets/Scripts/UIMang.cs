@@ -15,7 +15,8 @@ public class UIMang : MonoBehaviour
     public Text textScore ;
     public Text tuchRotat;
     public Text LevelNum;
-
+    public GameObject containerL1;
+    public GameObject containerL2;
     int minutes;
     int seconds;
     public float totalTime = 0f;
