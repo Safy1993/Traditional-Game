@@ -27,7 +27,8 @@ public class LevelManager : MonoBehaviour
     public GameObject nextLevel; 
 
     public static LevelManager Instance;
-
+    public GameObject containerL1;
+    public GameObject containerL2;
     int numOfShooting;
     public float timer = 2;
     // Start is called before the first frame update

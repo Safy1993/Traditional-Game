@@ -89,7 +89,13 @@ public class UIMang : MonoBehaviour
 
     public void BackToMainMenue()
     {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("MainMenu");
+
+    }
+
+    public void playAgainMidhrubGame()
+    {
+        SceneManager.LoadScene("MathrabGame");
 
     }
 

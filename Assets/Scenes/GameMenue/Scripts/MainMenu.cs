@@ -38,10 +38,7 @@ public class MainMenu : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.B))
-        {
-            backMainMenuMthrapGame();
-        }
+       
 
         if (Input.GetKey(KeyCode.P))
         {
@@ -75,24 +72,17 @@ public class MainMenu : MonoBehaviour
        // midhrabGameObject.SetActive(true);
        // HitButtonSound();
         // MainCanvas.SetActive(false);
-        SceneManager.LoadScene("MathrabGamePrefabs");
+        SceneManager.LoadScene("MathrabGame");
 
 
     }
 
-    public void backMainMenuMthrapGame()
-    {
 
-        MainCanvas.SetActive(true);
-      //  midhrabGameObject.SetActive(false);
-        HitButtonSound();
-      
-    }
 
     public void backMainMenuchooseGame()
     {
 
-        MainCanvas.SetActive(true);
+        MainMenue.SetActive(true);
         chooseGame.SetActive(false);
         HitButtonSound();
 
