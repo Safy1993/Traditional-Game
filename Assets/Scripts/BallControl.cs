@@ -45,6 +45,7 @@ public class BallControl : MonoBehaviour
             print(">>> hole");
             LevelManager.Instance.FinishedLevel();
 
+
         }
     }
 }

@@ -91,9 +91,18 @@ public class UIMang : MonoBehaviour
 
     public void BackToMainMenue()
     {
+        MidhrapAudioManager.Instance.ButtonHitSoundEffect();
         SceneManager.LoadScene("MenuScene");
+    }
+
+    public void PlayAgainMthrapGame()
+    {
+        MidhrapAudioManager.Instance.ButtonHitSoundEffect();
+        SceneManager.LoadScene("MathrabGame");
+        
 
     }
+
 
 
 }

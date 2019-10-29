@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     {
         UIMang.instance.endText.text = "you are win";
         UIMang.instance.endText.enabled = true;
-
+        MidhrapAudioManager.Instance.BallInHole();
         nextLevel.SetActive(true);
 
         PlayerPrefs.SetInt("Score", UIMang.instance.score);
@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
     {
         Instance = this;
 
-    
+       
 
         if (PlayerPrefs.GetInt("level", 0) == 0)
         {
@@ -134,6 +134,7 @@ public class LevelManager : MonoBehaviour
     {
         paddle.Shoot();
         CurrentState = PutterState.shooting;
+        MidhrapAudioManager.Instance.HitSoundEffect();
     }
 
     public void onNextLevel()
