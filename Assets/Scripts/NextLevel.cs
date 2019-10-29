@@ -19,6 +19,10 @@ public class NextLevel : MonoBehaviour
 
         SceneManager.LoadScene("GameL1");
 
+        LevelManager.Instance.containerL1.SetActive(true);
+        LevelManager.Instance.containerL2.SetActive(false);
+
+
         for (int i = 0; i < LevelManager.Instance.arrowLevel2.Length; i++)
         {
             LevelManager.Instance.arrowLevel2[i].SetActive(true);
