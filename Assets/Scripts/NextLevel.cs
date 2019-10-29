@@ -17,6 +17,7 @@ public class NextLevel : MonoBehaviour
     public void onNextLevel()
     {
 
+<<<<<<< HEAD
         SceneManager.LoadScene("MathrabGame");
 
         LevelManager.Instance.containerL1.SetActive(true);
@@ -27,13 +28,19 @@ public class NextLevel : MonoBehaviour
         {
             LevelManager.Instance.arrowLevel1[i].SetActive(false);
         }
+=======
+        SceneManager.LoadScene("GameL1");
+>>>>>>> parent of 7cd6337... Day 28.1
 
         for (int i = 0; i < LevelManager.Instance.arrowLevel2.Length; i++)
         {
             LevelManager.Instance.arrowLevel2[i].SetActive(true);
         }
 
-        
+        for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
+        {
+            LevelManager.Instance.arrowLevel1[i].SetActive(false);
+        }
 
     }
 
