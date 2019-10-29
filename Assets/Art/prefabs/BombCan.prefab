@@ -113,7 +113,7 @@ MonoBehaviour:
   type: 2
   hasColided: 0
   fx: {fileID: 0}
-  blastFX: {fileID: 1757481521742658, guid: d929526505ca41d47a8d695cb3c4a31c, type: 3}
+  blastFX: {fileID: 183722, guid: d632a69c2b5b13648a5e31b4ab25b51e, type: 3}
   lifeFx: {fileID: 0}
   duseFX: {fileID: 0}
 --- !u!65 &153882411411705837
