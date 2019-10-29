@@ -36,12 +36,15 @@ public class LevelManager : MonoBehaviour
     public GameObject nextLevel;
 
     public static LevelManager Instance;
+    public AudioSource hitball;
+    public AudioSource buttonClickSound;
 
-    
     public float timer = 2;
     // Start is called before the first frame update
     void Start()
     {
+
+        
         Instance = this;
 
        
@@ -61,6 +64,8 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
 
         if (Input.GetKey(KeyCode.N))
         {
@@ -134,11 +139,14 @@ public class LevelManager : MonoBehaviour
     {
         paddle.Shoot();
         CurrentState = PutterState.shooting;
-        MidhrapAudioManager.Instance.HitSoundEffect();
+        // MidhrapAudioManager.Instance.HitSoundEffect();
+        hitball.Play();
     }
 
     public void onNextLevel()
     {
+        buttonClickSound.Play();
+        //MidhrapAudioManager.Instance.ButtonHitSoundEffect();
         if (PlayerPrefs.GetInt("level", 0) == 0)
         {
             PlayerPrefs.SetInt("level", 1);
