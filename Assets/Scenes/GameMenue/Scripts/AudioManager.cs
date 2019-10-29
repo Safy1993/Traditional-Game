@@ -47,6 +47,7 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(soundEffects[1], 0.5f);
     }
+   
     //2)Hit can
     public void HitCan()
     {
@@ -97,7 +98,7 @@ public class AudioManager : MonoBehaviour
     //AudioManager.Instance.DoubalScoreSoundEffect();
     //AudioManager.Instance.FlayBallSoundEffect();
     //AudioManager.Instance.GameOverSoundEffect();
-    //AudioManager.Instance.AnberStartMusic();
+  
 
 
 

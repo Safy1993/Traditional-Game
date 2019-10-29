@@ -150,9 +150,12 @@ public class GameManagers : MonoBehaviour
                     {
                         //check gameoevr
                         print("Game Over");
+                        
                         //StartCoroutine(CheckGameOver());
                         lastShot = true;
+                        AudioManager.Instance.AnberStartMusic();
                     }
+
 
                     checkX = false;
                 }
@@ -193,7 +196,9 @@ public class GameManagers : MonoBehaviour
 
                 break;
             case GameState.Shot:
+                
                 gameTimer += Time.deltaTime;
+              
 
                 if (gameTimer > 3)
                 {
@@ -220,7 +225,7 @@ public class GameManagers : MonoBehaviour
                             NextBall();
                         else
                             UIManagers.instance.gameOverUI.SetActive(true);
-                            AudioManager.Instance.AnberStartMusic();
+                          
 
                     }
 
@@ -250,6 +255,7 @@ public class GameManagers : MonoBehaviour
             CurrentState = GameState.gameover;
 
             UIManagers.instance.gameOverUI.SetActive(true);
+            
             //UIManagers.instance.HightScore();
 
 
@@ -317,6 +323,7 @@ public class GameManagers : MonoBehaviour
     {
         UIManagers.instance.GameUI.SetActive(false);
         UIManagers.instance.YouWin(true);
+        
         Debug.Log("Loding next level");
         yield return new WaitForSeconds(1.5f);
         UIManagers.instance.YouWin(false);
@@ -327,13 +334,15 @@ public class GameManagers : MonoBehaviour
         if (currentLevel == allLevels.Length)
         {
             //UIManagers.instance.congraUI.SetActive(true);
+
+            // SceneManager.LoadScene("0");
             
-           // SceneManager.LoadScene("0");
-            
+
         }
 
         yield return new WaitForSeconds(1.0f);
         UIManagers.instance.UpdateScoreMultiplier();
+        
 
         shotedBall = 0;
 
@@ -357,6 +366,7 @@ public class GameManagers : MonoBehaviour
         {
             totalBalls += count;
             UIManagers.instance.UpdateBallIcons();
+          
 
 
         }

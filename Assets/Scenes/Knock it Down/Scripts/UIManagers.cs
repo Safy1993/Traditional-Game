@@ -166,7 +166,9 @@ public class UIManagers : MonoBehaviour
         {
             scoreMulitplier++;
             scoreMltiImage.SetActive(true);
+          
             scoreMultiText.text = scoreMulitplier.ToString();
+            //AudioManager.Instance.AnberStartMusic();
 
         }
         else

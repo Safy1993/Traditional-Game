@@ -86,7 +86,7 @@ public class Cans : MonoBehaviour
                     {
                         once = true;
                         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRaduis);
-    Instantiate(blastFX, transform.position, Quaternion.identity);
+                    
 
                         foreach (Collider c in colliders)
                         {
@@ -95,7 +95,10 @@ public class Cans : MonoBehaviour
                             {
                                 rb.AddExplosionForce(blastForce, transform.position, blastRaduis, 4, ForceMode.Impulse);
                             }
+                            
                         }
+                        Instantiate(blastFX, transform.position, Quaternion.identity);
+
                     }
                     break;
 
@@ -106,7 +109,7 @@ public class Cans : MonoBehaviour
 
                         GameManagers.instance.AddExtraBall(1);
                         Instantiate(lifeFx, transform.position, Quaternion.identity);
-fx.SetActive(true);
+                        fx.SetActive(true);
 
 
                     }
