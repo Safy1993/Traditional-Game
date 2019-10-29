@@ -1,40 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.SceneManagement;
 
-public class NextLevel : MonoBehaviour
-{
-    // Start is called before the first frame update
+//public class NextLevel : MonoBehaviour
+//{
+//    // Start is called before the first frame update
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.N))
-        {
-            onNextLevel();
-        }
-    }
-    public void onNextLevel()
-    {
+//    //private void Update()
+//    //{
 
-        SceneManager.LoadScene("GameL1");
-
-        for (int i = 0; i < LevelManager.Instance.arrowLevel2.Length; i++)
-        {
-            LevelManager.Instance.arrowLevel2[i].SetActive(true);
-        }
-
-        for (int i = 0; i < LevelManager.Instance.arrowLevel1.Length; i++)
-        {
-            LevelManager.Instance.arrowLevel1[i].SetActive(false);
-        }
-
-    }
+//    //}
 
 
-    public void backtomainmenue()
-    {
-        SceneManager.LoadScene("MainMnue");
-    }
 
-}
+
+
+//}

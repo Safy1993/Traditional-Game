@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+//using System;
 
 public enum PutterState
 {
@@ -16,47 +16,56 @@ public enum PutterState
 
 public class LevelManager : MonoBehaviour
 {
-   public PutterState CurrentState;
+    public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
- 
 
-    public GameObject[] arrowLevel1 ;
+    internal void FinishedLevel()
+    {
+        UIMang.instance.endText.text = "you are win";
+        UIMang.instance.endText.enabled = true;
 
-    public GameObject[] arrowLevel2;
+        nextLevel.SetActive(true);
+
+        PlayerPrefs.SetInt("Score", UIMang.instance.score);
+    }
+
+    public GameObject arrowLevel1;
+    public GameObject arrowLevel2;
+
     public GameObject nextLevel;
-    public GameObject containerL1;
-    public GameObject containerL2;
+
     public static LevelManager Instance;
 
-    int numOfShooting;
+    
     public float timer = 2;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < arrowLevel1.Length; i++)
-        {
-            arrowLevel1[i].SetActive(true);
-        }
-
-        for (int i = 0; i < arrowLevel2.Length; i++)
-        {
-            arrowLevel2[i].SetActive(false);
-        }
-        
-
         Instance = this;
 
-        numOfShooting = 5;
+    
+
+        if (PlayerPrefs.GetInt("level", 0) == 0)
+        {
+            arrowLevel1.SetActive(true);
+            arrowLevel2.SetActive(false);
+        }
+        else
+        {
+            arrowLevel1.SetActive(false);
+            arrowLevel2.SetActive(true);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-      
 
-        print(CurrentState);
-
+        if (Input.GetKey(KeyCode.N))
+        {
+            onNextLevel();
+        }
         switch (CurrentState)
         {
 
@@ -64,20 +73,20 @@ public class LevelManager : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                   
+
                     Shoot();
-                  
+
                 }
 
 
-               
+
 
                 break;
 
 
             case PutterState.shooting:
 
-                
+
 
                 if (ball.velocity.magnitude >= 0.01f)
                 {
@@ -90,28 +99,28 @@ public class LevelManager : MonoBehaviour
 
             case PutterState.following:
 
-               
+
 
                 if (ball.velocity.magnitude <= 0.05f)
                 {
-             
-                   timer -= Time.deltaTime;
 
-                    if (timer < 0)
-                    {
-                       
-                        if (UIMang.instance.score == 0)
-                        {
-                            UIMang.instance.ShowGameOver();
-                        }
-                        else
-                        {
-                            print("Idel state >>> ");
-                            CurrentState = PutterState.Idle;
-                            paddle.MovePlayer();
-                            timer = 2;
-                        }
-                    }
+                    //timer -= Time.deltaTime;
+
+                    // if (timer < 0)
+                    // {
+
+                    //     if (UIMang.instance.score == 0)
+                    //     {
+                    //         UIMang.instance.ShowGameOver();
+                    //     }
+                    //     else
+                    //     {
+                    print("Idel state >>> ");
+                    CurrentState = PutterState.Idle;
+                    paddle.MovePlayer();
+                    timer = 2;
+                    // }
+                    // }
                 }
 
                 break;
@@ -127,4 +136,17 @@ public class LevelManager : MonoBehaviour
         CurrentState = PutterState.shooting;
     }
 
+    public void onNextLevel()
+    {
+        if (PlayerPrefs.GetInt("level", 0) == 0)
+        {
+            PlayerPrefs.SetInt("level", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("level", 0);
+        }
+
+        SceneManager.LoadScene("MathrabGame");
+    }
 }
