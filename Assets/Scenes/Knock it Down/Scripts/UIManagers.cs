@@ -33,6 +33,7 @@ public class UIManagers : MonoBehaviour
 
     public GameObject PausePanel;
     public GameObject gameOverUI;
+    public GameObject congraUI;
 
     public Text gearRotationText;
 
@@ -165,7 +166,9 @@ public class UIManagers : MonoBehaviour
         {
             scoreMulitplier++;
             scoreMltiImage.SetActive(true);
+          
             scoreMultiText.text = scoreMulitplier.ToString();
+            //AudioManager.Instance.AnberStartMusic();
 
         }
         else

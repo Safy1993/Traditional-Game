@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -39,6 +40,9 @@ public class GameManagers : MonoBehaviour
     public Transform handController;
 
     bool lastShot;
+
+   public int TotalScore;
+ 
     // Start is called before the first frame update
     //float xrot = -1;
 
@@ -55,10 +59,15 @@ public class GameManagers : MonoBehaviour
 
         CurrentState = GameState.gameover;
     }
+    public void Start()
+    {
+        //AudioManager.Instance.AnberStartMusic();
+    }
 
     public void StartGame()
     {
         CurrentState = GameState.Idle;
+
     }
 
     // Update is called once per frame
@@ -107,12 +116,12 @@ public class GameManagers : MonoBehaviour
 
                 UIManagers.instance.gearRotationText.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
-                if (xrot < 0.7)
+                if (xrot > 0.7)
                 {
                     checkX = true;
                     timer = 0;
                 }
-                else if (checkX && xrot > 0.2f && timer < 1f)
+                else if (checkX && xrot < 0.2f && timer < 1f)
                 {
 
 
@@ -132,17 +141,21 @@ public class GameManagers : MonoBehaviour
                     CurrentState = GameState.Shot;
                     //xrot = -1;
                     shotedBall++;
-                    totalBalls--;
                     UIManagers.instance.UpdateBallIcons();
+                    totalBalls--;
 
+                   
 
                     if (totalBalls <= 0)
                     {
                         //check gameoevr
                         print("Game Over");
+                        
                         //StartCoroutine(CheckGameOver());
                         lastShot = true;
+                        AudioManager.Instance.AnberStartMusic();
                     }
+
 
                     checkX = false;
                 }
@@ -151,20 +164,19 @@ public class GameManagers : MonoBehaviour
                     timer += Time.deltaTime;
                 }
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && Application.platform == RuntimePlatform.WindowsEditor)
                 {
+                    print("update Ball");
                     //shoot the ball
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
                     ball.GetComponent<Rigidbody>().AddForce(dir.normalized * 2000);
                     CurrentState = GameState.Shot;
-
-                    shotedBall++;
-                    totalBalls--;
                     UIManagers.instance.UpdateBallIcons();
+                    shotedBall++;
 
-
+                    totalBalls--;
                     if (totalBalls <= 0)
                     {
                         //check gameoevr
@@ -184,11 +196,41 @@ public class GameManagers : MonoBehaviour
 
                 break;
             case GameState.Shot:
+                
                 gameTimer += Time.deltaTime;
+              
 
                 if (gameTimer > 3)
                 {
-                    NextBall();
+                    int score;
+
+                    if (AllGrounded(out score))
+                    {
+                        print("increase score");
+                        TotalScore += score;
+                        // win
+                        if (currentLevel < allLevels.Length - 1)
+                            LoadNextLevel();
+                        else
+                        {
+                            //game finished 
+                            UIManagers.instance.GameUI.SetActive(false);
+                            UIManagers.instance.congraUI.SetActive(true);
+                            
+                        }
+                    }
+                    else
+                    {
+                        if (!lastShot)
+                            NextBall();
+                        else
+                            UIManagers.instance.gameOverUI.SetActive(true);
+                          
+
+                    }
+
+                    UIManagers.instance.scoreText.text = (TotalScore + score).ToString();
+                    UIManagers.instance.highscoreText.text = TotalScore.ToString();
                 }
                 break;
             default:
@@ -213,53 +255,75 @@ public class GameManagers : MonoBehaviour
             CurrentState = GameState.gameover;
 
             UIManagers.instance.gameOverUI.SetActive(true);
-            UIManagers.instance.HightScore();
+            
+            //UIManagers.instance.HightScore();
+
 
             lastShot = false;
         }
         gameTimer = 0;
     }
 
-    public void GroundFallenCheck()
+    //public void GroundFallenCheck()
+    //{
+    //    if (AllGrounded())
+    //    {
+    //        //Load next Level
+    //        print("Load Next Level");
+
+    //        LoadNextLevel();
+
+    //    }
+
+    //}
+
+    bool AllGrounded(out  int score)
     {
-        if (AllGrounded())
-        {
-            //Load next Level
-            print("Load Next Level");
-
-            LoadNextLevel();
-
-        }
-
-    }
-
-    bool AllGrounded()
-    {
+        score = 0;
         Transform canSet = allLevels[currentLevel].transform;
         foreach (Transform t in canSet)
         {
-            if (t.GetComponent<Cans>().hasFallen == false)
+            if (!t.GetComponent<Cans>().IsMoved())
             {
                 return false;
+
             }
+
+            score++;
         }
+
+
 
         return true;
     }
 
+    //bool AllGrounded()
+    //{
+    //    Transform canSet = allLevels[currentLevel].transform;
+    //    foreach (Transform t in canSet)
+    //    {
+    //        if (t.GetComponent<Cans>().hasFallen == false)
+    //        {
+    //            return false;
+    //        }
+    //    }
+
+    //    return true;
+    //}
+
     public void LoadNextLevel()
     {
-        if (CurrentState == GameState.Shot || CurrentState == GameState.gameover)
-        {
-            StartCoroutine(LoadNextLevelRoutine());
-            CurrentState = GameState.Idle;
+        StartCoroutine(LoadNextLevelRoutine());
+        //CurrentState = GameState.Idle;
+        CurrentState = GameState.gameover;
 
-        }
     }
+
     IEnumerator LoadNextLevelRoutine()
     {
-        UIManager.instance.GameUI.SetActive(false);
+        UIManagers.instance.GameUI.SetActive(false);
         UIManagers.instance.YouWin(true);
+        
         Debug.Log("Loding next level");
         yield return new WaitForSeconds(1.5f);
         UIManagers.instance.YouWin(false);
@@ -267,10 +331,18 @@ public class GameManagers : MonoBehaviour
         allLevels[currentLevel].SetActive(false);
         currentLevel++;
 
-        if (currentLevel > allLevels.Length) currentLevel = 0;
+        if (currentLevel == allLevels.Length)
+        {
+            //UIManagers.instance.congraUI.SetActive(true);
+
+            // SceneManager.LoadScene("0");
+            
+
+        }
 
         yield return new WaitForSeconds(1.0f);
         UIManagers.instance.UpdateScoreMultiplier();
+        
 
         shotedBall = 0;
 
@@ -282,7 +354,10 @@ public class GameManagers : MonoBehaviour
 
         ballScript.RepoitionBall();
 
-        UIManager.instance.GameUI.SetActive(true);
+        UIManagers.instance.GameUI.SetActive(true);
+
+        CurrentState = GameState.Idle;
+
 
     }
     public void AddExtraBall(int count)
@@ -291,13 +366,14 @@ public class GameManagers : MonoBehaviour
         {
             totalBalls += count;
             UIManagers.instance.UpdateBallIcons();
+          
 
 
         }
 
     }
     //IEnumerator CheckGameOver()
-    //{
+
     //    yield return new WaitForSeconds(2f);
     //    if (AllGrounded() == false)
     //    {
@@ -310,5 +386,16 @@ public class GameManagers : MonoBehaviour
 
 
     //}
+    public void HightScore()
+    {
+
+         
+        UIManagers.instance.highscoreText.text = "Your Score:" + TotalScore ;
+        
+        PlayerPrefs.SetInt("highscore", TotalScore);
+
+
+
+    }
 
 }
