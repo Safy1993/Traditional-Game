@@ -94,7 +94,7 @@ public class UIMang : MonoBehaviour
     public void BackToMainMenue()
     {
         MidhrapAudioManager.Instance.ButtonHitSoundEffect();
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PlayAgainMthrapGame()

@@ -6,7 +6,7 @@ public class GearController : MonoBehaviour
 {
     float timer;
     bool checkX;
-    public float force;
+    public float force ;
 
  
 
@@ -26,19 +26,19 @@ public class GearController : MonoBehaviour
         UIMang.instance.gearRotation.text = " Gear Rotation =  [ " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + " ]";
 
 
-        float xrot =  OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote). x;
+        float xrot = Mathf.Abs( OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote). x);
 
         if (LevelManager.Instance.CurrentState == PutterState.Idle)
         {
-            if (xrot < -0.3)
+            if (xrot > 0.6)
             {
                 checkX = true;
                 timer = 0;
             }
-            else if (checkX && xrot > 0.3 && timer < 1f)
+            else if (checkX && xrot < 0.1 && timer < 1f)
             {
-                force = (1 / timer) * 10;
-                force = Mathf.Clamp(force, 20, 200);
+                force = (1 / timer) * 300;
+                force = Mathf.Clamp(force, 100, 1500);
                 //force = 70;
                 LevelManager.Instance.Shoot();
                 checkX = false;

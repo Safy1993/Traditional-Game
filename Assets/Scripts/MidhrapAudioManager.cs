@@ -6,7 +6,7 @@ public class MidhrapAudioManager : MonoBehaviour
 {
     public static MidhrapAudioManager Instance { get; set; }
     [SerializeField] AudioClip[] soundEffects;
-    AudioSource audioSource;
+    AudioSource audioSource1;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class MidhrapAudioManager : MonoBehaviour
     }
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+      audioSource1 = GetComponent<AudioSource>();
         backgroundSound();
 
 
@@ -31,20 +31,25 @@ public class MidhrapAudioManager : MonoBehaviour
 
     public void BallInHole()
     {
-        audioSource.PlayOneShot(soundEffects[0], 1f);
+        audioSource1.PlayOneShot(soundEffects[0], 1f);
     }
     public void HitSoundEffect()
     {
-        audioSource.PlayOneShot(soundEffects[1], 1f);
+        audioSource1.PlayOneShot(soundEffects[1], 1f);
     }
     public void ButtonHitSoundEffect()
     {
-        audioSource.PlayOneShot(soundEffects[2], 0.5f);
+        audioSource1.PlayOneShot(soundEffects[2], 0.5f);
     }
 
     public void backgroundSound()
     {
-        audioSource.PlayOneShot(soundEffects[3], 0.5f);
+        audioSource1.PlayOneShot(soundEffects[3], 0.5f);
+    }
+
+    public void yourAreWinSound()
+    {
+        audioSource1.PlayOneShot(soundEffects[4], 0.5f);
     }
 
 

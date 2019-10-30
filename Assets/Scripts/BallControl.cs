@@ -22,7 +22,7 @@ public class BallControl : MonoBehaviour
         //if (rigidbody.velocity.magnitude < 0.7f)
         if (LevelManager.Instance.CurrentState == PutterState.following)
         {
-            print(rigidbody.velocity.magnitude);
+            //print(rigidbody.velocity.magnitude);
 
             if (rigidbody.velocity.magnitude < 1f)
                 rigidbody.velocity -= rigidbody.velocity * 0.05f;

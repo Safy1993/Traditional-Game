@@ -19,32 +19,26 @@ public class LevelManager : MonoBehaviour
     public PutterState CurrentState;
     public PutterControl paddle;
     public Rigidbody ball;
-
-    internal void FinishedLevel()
-    {
-        UIMang.instance.endText.text = "you are win";
-        UIMang.instance.endText.enabled = true;
-        MidhrapAudioManager.Instance.BallInHole();
-        nextLevel.SetActive(true);
-
-        PlayerPrefs.SetInt("Score", UIMang.instance.score);
-    }
-
+    public GameObject Line;
+    public AudioSource winSound;
+    public AudioSource hitball;
+    public AudioSource buttonClickSound;
+    public AudioSource backgroundSound;
+    public AudioSource ballInHole;
     public GameObject arrowLevel1;
     public GameObject arrowLevel2;
 
     public GameObject nextLevel;
 
     public static LevelManager Instance;
-    public AudioSource hitball;
-    public AudioSource buttonClickSound;
+ 
 
     public float timer = 2;
     // Start is called before the first frame update
     void Start()
     {
-
-        
+       backgroundSound.Play();
+      
         Instance = this;
 
        
@@ -64,7 +58,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
 
 
         if (Input.GetKey(KeyCode.N))
@@ -122,6 +116,7 @@ public class LevelManager : MonoBehaviour
                     //     {
                     print("Idel state >>> ");
                     CurrentState = PutterState.Idle;
+                    Line.SetActive(true);
                     paddle.MovePlayer();
                     timer = 2;
                     // }
@@ -139,14 +134,15 @@ public class LevelManager : MonoBehaviour
     {
         paddle.Shoot();
         CurrentState = PutterState.shooting;
-        // MidhrapAudioManager.Instance.HitSoundEffect();
+        Line.SetActive(false);
+        //MidhrapAudioManager.Instance.HitSoundEffect();
         hitball.Play();
     }
 
     public void onNextLevel()
     {
         buttonClickSound.Play();
-        //MidhrapAudioManager.Instance.ButtonHitSoundEffect();
+      //  MidhrapAudioManager.Instance.ButtonHitSoundEffect();
         if (PlayerPrefs.GetInt("level", 0) == 0)
         {
             PlayerPrefs.SetInt("level", 1);
@@ -157,5 +153,18 @@ public class LevelManager : MonoBehaviour
         }
 
         SceneManager.LoadScene("MathrabGame");
+    }
+
+    internal void FinishedLevel()
+    {
+        UIMang.instance.endText.text = "you are win";
+        UIMang.instance.endText.enabled = true;
+        //MidhrapAudioManager.Instance.BallInHole();
+        // MidhrapAudioManager.Instance.yourAreWinSound();
+        ballInHole.Play();
+        winSound.Play();
+        nextLevel.SetActive(true);
+        PlayerPrefs.SetInt("Score", UIMang.instance.score);
+
     }
 }
