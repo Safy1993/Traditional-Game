@@ -107,7 +107,8 @@ public class UIManagers : MonoBehaviour
     }
     public void B_Restart()
     {
-        StartCoroutine(RestartStartRoutine());
+        // StartCoroutine(RestartStartRoutine());
+        SceneManager.LoadScene("MainMenu");
       
     }
 
@@ -200,9 +201,10 @@ public class UIManagers : MonoBehaviour
     }
     public void BackToMainMenue()
     {
-        clickButtonSound.Play();
+       
         SceneManager.LoadScene("MainMenu");
-        
+        //clickButtonSound.Play();
+
 
     }
 
