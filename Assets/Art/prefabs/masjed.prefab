@@ -97,7 +97,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.1
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -153,16 +153,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 6428352098763271044, guid: 72b873d55078f7d4e9f28fec5f692a54,
-        type: 3}
-      propertyPath: m_Name
-      value: masjed forms mesh2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686785001155059544, guid: 72b873d55078f7d4e9f28fec5f692a54,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ac18269b3f7543e4ebd864c726be80e7, type: 2}
     - target: {fileID: 8029146227545020823, guid: 72b873d55078f7d4e9f28fec5f692a54,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -233,6 +223,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5914548
       objectReference: {fileID: 0}
+    - target: {fileID: 6428352098763271044, guid: 72b873d55078f7d4e9f28fec5f692a54,
+        type: 3}
+      propertyPath: m_Name
+      value: masjed forms mesh2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686785001155059544, guid: 72b873d55078f7d4e9f28fec5f692a54,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac18269b3f7543e4ebd864c726be80e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b873d55078f7d4e9f28fec5f692a54, type: 3}
 --- !u!1001 &1642931642410355382
@@ -242,16 +242,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2517343614354607158}
     m_Modifications:
-    - target: {fileID: 5448984156129293528, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
-        type: 3}
-      propertyPath: m_Name
-      value: masjed_top_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 5448984156129293528, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -320,6 +310,21 @@ PrefabInstance:
     - target: {fileID: 9062922369739753163, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448984156129293528, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_Name
+      value: masjed_top_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448984156129293528, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026511419888058372, guid: 1f9ba33ee993dbd47b67c8bd2b0833bf,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
