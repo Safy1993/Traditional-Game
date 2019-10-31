@@ -36,7 +36,7 @@ public class UIManagers : MonoBehaviour
     public GameObject congraUI;
 
     public Text gearRotationText;
-
+    public AudioSource clickButtonSound; 
     void Awake()
     {
         if (instance == null)
@@ -100,7 +100,8 @@ public class UIManagers : MonoBehaviour
     public void StartButton()
     {
         StartCoroutine(StartRoutine());
-
+        GameUI.SetActive(true);
+        HomeUI.SetActive(false);
 
 
     }
@@ -180,11 +181,11 @@ public class UIManagers : MonoBehaviour
     }
     IEnumerator RestartStartRoutine()
     {
-
+        clickButtonSound.Play();
         ShowBlackFade();
         isRestart = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);      
+        SceneManager.LoadScene(1);      
     }
     public void HightScore()
     {
@@ -199,8 +200,8 @@ public class UIManagers : MonoBehaviour
     }
     public void BackToMainMenue()
     {
-
-        SceneManager.LoadScene("MenuScene");
+        clickButtonSound.Play();
+        SceneManager.LoadScene("MainMenu");
         
 
     }

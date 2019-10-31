@@ -19,8 +19,8 @@ public class UIMang : MonoBehaviour
     int minutes;
     int seconds;
     public float totalTime = 0f;
-    public int score = 10 ; 
-
+    public int score = 10 ;
+    public  AudioSource buttonClickSound; 
     private void Awake()
     {
         if (instance == null)
@@ -93,13 +93,13 @@ public class UIMang : MonoBehaviour
 
     public void BackToMainMenue()
     {
-        MidhrapAudioManager.Instance.ButtonHitSoundEffect();
+        buttonClickSound.Play();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void PlayAgainMthrapGame()
     {
-        MidhrapAudioManager.Instance.ButtonHitSoundEffect();
+        buttonClickSound.Play();
         SceneManager.LoadScene("MathrabGame");
         
 

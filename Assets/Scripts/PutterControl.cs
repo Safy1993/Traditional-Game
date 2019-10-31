@@ -31,16 +31,16 @@ public class PutterControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(0, Time.deltaTime * 90, 0);
+            transform.Rotate(0, Time.deltaTime * 60, 0);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
 
-            transform.Rotate(0, -Time.deltaTime * 90, 0);
+            transform.Rotate(0, -Time.deltaTime * 60, 0);
         }
 
         Vector2 touvhInput = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad, OVRInput.Controller.RTrackedRemote);
-        transform.Rotate(Vector3.up * touvhInput.x * 60 * Time.deltaTime);
+        transform.Rotate(Vector3.up * touvhInput.x * 45 * Time.deltaTime);
 
         UIMang.instance.tuchRotat.text = touvhInput.ToString();
     }

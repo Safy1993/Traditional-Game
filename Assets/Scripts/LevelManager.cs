@@ -157,13 +157,15 @@ public class LevelManager : MonoBehaviour
 
     internal void FinishedLevel()
     {
-        UIMang.instance.endText.text = "you are win";
+        UIMang.instance.endText.text = "you win";
         UIMang.instance.endText.enabled = true;
+
+        nextLevel.SetActive(true);
         //MidhrapAudioManager.Instance.BallInHole();
         // MidhrapAudioManager.Instance.yourAreWinSound();
         ballInHole.Play();
         winSound.Play();
-        nextLevel.SetActive(true);
+        
         PlayerPrefs.SetInt("Score", UIMang.instance.score);
 
     }

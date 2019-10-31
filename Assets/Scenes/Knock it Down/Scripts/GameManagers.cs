@@ -133,7 +133,7 @@ public class GameManagers : MonoBehaviour
                     ball.transform.parent = null;
                     ball.GetComponent<Rigidbody>().isKinematic = false;
 
-                    Vector3 FinalDir = dir + handController.forward;
+                    Vector3 FinalDir = dir + handController.forward * 2;
 
                     ball.GetComponent<Rigidbody>().AddForce(FinalDir.normalized * 2000);
 

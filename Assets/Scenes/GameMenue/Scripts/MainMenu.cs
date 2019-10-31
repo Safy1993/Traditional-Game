@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
 
      void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.G))
         {
             PlayGame();
            
@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-
+            AmperGame();
         }
 
        
@@ -67,6 +67,8 @@ public class MainMenu : MonoBehaviour
 
     public void MathrabGame()
     {
+        PlayerPrefs.SetInt("game", 0);
+
         SceneManager.LoadScene("MathrabGame");
         HitButtonSound();
     }
@@ -83,6 +85,8 @@ public class MainMenu : MonoBehaviour
 
     public void AmperGame()
     {
+        PlayerPrefs.SetInt("game", 1);
+
         SceneManager.LoadScene("MathrabGame");
         HitButtonSound();
 
