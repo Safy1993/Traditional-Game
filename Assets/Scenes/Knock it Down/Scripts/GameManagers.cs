@@ -39,7 +39,7 @@ public class GameManagers : MonoBehaviour
 
     public Transform handController;
 
-    bool lastShot;
+    public bool lastShot;
 
    public int TotalScore;
  
@@ -61,12 +61,15 @@ public class GameManagers : MonoBehaviour
     }
     public void Start()
     {
-        //AudioManager.Instance.AnberStartMusic();
+       // AudioManager.Instance.AnberStartMusic();
+      
     }
 
     public void StartGame()
     {
+        
         CurrentState = GameState.Idle;
+        
 
     }
 
@@ -153,7 +156,7 @@ public class GameManagers : MonoBehaviour
                         
                         //StartCoroutine(CheckGameOver());
                         lastShot = true;
-                        AudioManager.Instance.AnberStartMusic();
+                       
                     }
 
 
@@ -175,8 +178,9 @@ public class GameManagers : MonoBehaviour
                     CurrentState = GameState.Shot;
                     UIManagers.instance.UpdateBallIcons();
                     shotedBall++;
-
+                  
                     totalBalls--;
+                    
                     if (totalBalls <= 0)
                     {
                         //check gameoevr
@@ -196,36 +200,56 @@ public class GameManagers : MonoBehaviour
 
                 break;
             case GameState.Shot:
-                
+
+             
                 gameTimer += Time.deltaTime;
-              
+                
+
 
                 if (gameTimer > 3)
                 {
+                    
                     int score;
 
                     if (AllGrounded(out score))
                     {
+                       
                         print("increase score");
                         TotalScore += score;
+                    
                         // win
                         if (currentLevel < allLevels.Length - 1)
+                        {
+                         
+                            AnberGameAudioManager.Instance.goNextLevel();
+                     
                             LoadNextLevel();
+                        }
                         else
                         {
                             //game finished 
                             UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.congraUI.SetActive(true);
-                            
+                            AnberGameAudioManager.Instance.goNextLevel();
+
+
                         }
+                      
+
                     }
                     else
                     {
                         if (!lastShot)
                             NextBall();
+
                         else
+                        {
+
+                            UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.gameOverUI.SetActive(true);
-                          
+                        }
+
+
 
                     }
 
@@ -252,7 +276,9 @@ public class GameManagers : MonoBehaviour
         }
         else
         {
+            
             CurrentState = GameState.gameover;
+           
 
             UIManagers.instance.gameOverUI.SetActive(true);
             
@@ -290,11 +316,14 @@ public class GameManagers : MonoBehaviour
             }
 
             score++;
+            
+
         }
 
 
 
         return true;
+       
     }
 
     //bool AllGrounded()
@@ -329,7 +358,9 @@ public class GameManagers : MonoBehaviour
         UIManagers.instance.YouWin(false);
         UIManagers.instance.ShowBlackFade();
         allLevels[currentLevel].SetActive(false);
+       
         currentLevel++;
+       
 
         if (currentLevel == allLevels.Length)
         {
@@ -339,12 +370,13 @@ public class GameManagers : MonoBehaviour
             
 
         }
-
+        
         yield return new WaitForSeconds(1.0f);
         UIManagers.instance.UpdateScoreMultiplier();
-        
+
 
         shotedBall = 0;
+        
 
         print("current level " + currentLevel);
 

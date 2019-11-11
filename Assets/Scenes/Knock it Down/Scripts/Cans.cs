@@ -81,7 +81,7 @@ public class Cans : MonoBehaviour
 
 
                 case CanType.bomb:
-
+                  
                     if (!once)
                     {
                         once = true;
@@ -108,6 +108,7 @@ public class Cans : MonoBehaviour
                     {
 
                         GameManagers.instance.AddExtraBall(1);
+                        AnberGameAudioManager.Instance.HitCan();
                         Instantiate(lifeFx, transform.position, Quaternion.identity);
                         fx.SetActive(true);
 
@@ -116,11 +117,13 @@ public class Cans : MonoBehaviour
                     break;
                 case CanType.normal:
                     {
+                        
                         if (!once)
                         {
                             once = true;
 
                             Instantiate(duseFX, transform.position, Quaternion.identity);
+
                         }
 
                     }

@@ -71,11 +71,14 @@ public class UIManagers : MonoBehaviour
         if (Input.GetKey(KeyCode.Return))
         {
             StartCoroutine(StartRoutine());
+            AnberGameAudioManager.Instance.HitButton();
         }
 
         if (Input.GetKey(KeyCode.R))
         {
             B_Restart();
+            AnberGameAudioManager.Instance.HitButton();
+
         }
     }
 
@@ -162,13 +165,13 @@ public class UIManagers : MonoBehaviour
     }
     public void UpdateScoreMultiplier()
     {
-        if (GameManagers.instance.shotedBall == 1)
+        if (GameManagers.instance.shotedBall==1)
         {
             scoreMulitplier++;
             scoreMltiImage.SetActive(true);
           
             scoreMultiText.text = scoreMulitplier.ToString();
-            //AudioManager.Instance.AnberStartMusic();
+            AnberGameAudioManager.Instance.AnberStartMusic();
 
         }
         else
@@ -209,4 +212,7 @@ public class UIManagers : MonoBehaviour
     {
         YouWinPanel.SetActive(v);
     }
+   
+
+
 }

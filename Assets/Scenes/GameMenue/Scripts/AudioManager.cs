@@ -59,6 +59,7 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(soundEffects[5], 0.5f);
     }
+
     //4) NextLevel
     public void NextLevelSoundEffect()
     {
@@ -73,6 +74,10 @@ public class AudioManager : MonoBehaviour
     public void ReduceBallSoundEffect()
     {
         audioSource.PlayOneShot(soundEffects[2], 0.5f);
+    }
+    public void goNextLevel()
+    {
+
     }
     //7)DoubalScore
     public void DoubalScoreSoundEffect()
@@ -99,6 +104,7 @@ public class AudioManager : MonoBehaviour
     //AudioManager.Instance.FlayBallSoundEffect();
     //AudioManager.Instance.GameOverSoundEffect();
   
+
 
 
 
