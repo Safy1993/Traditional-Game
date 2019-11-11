@@ -61,7 +61,7 @@ public class GameManagers : MonoBehaviour
     }
     public void Start()
     {
-        //AudioManager.Instance.AnberStartMusic();
+       // AnberAdioManagerr.Instance.NextLevelSoundEffect();
     }
 
     public void StartGame()
@@ -77,11 +77,11 @@ public class GameManagers : MonoBehaviour
 
         // UIManager.instance.gearRotationText.text = " Gear Rotation =  [ " + handController.localRotation + " ]";
 
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
+        //if (EventSystem.current.IsPointerOverGameObject())
+        //{
+        //    return;
 
-        }
+        //}
         Vector3 dir = Target.position - ball.transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 
@@ -210,13 +210,17 @@ public class GameManagers : MonoBehaviour
                         TotalScore += score;
                         // win
                         if (currentLevel < allLevels.Length - 1)
+                        {
                             LoadNextLevel();
+                            AnberAdioManager.Instance.NextLevelSoundEffect();
+                        }
                         else
                         {
                             //game finished 
+                            AnberAdioManager.Instance.NextLevelSoundEffect();
                             UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.congraUI.SetActive(true);
-                            
+
                         }
                     }
                     else
@@ -224,7 +228,10 @@ public class GameManagers : MonoBehaviour
                         if (!lastShot)
                             NextBall();
                         else
+                        {
+                            UIManagers.instance.GameUI.SetActive(false);
                             UIManagers.instance.gameOverUI.SetActive(true);
+                        }
                           
 
                     }

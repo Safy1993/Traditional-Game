@@ -36,7 +36,7 @@ public class UIManagers : MonoBehaviour
     public GameObject congraUI;
 
     public Text gearRotationText;
-    public AudioSource clickButtonSound; 
+    //public AudioSource clickButtonSound; 
     void Awake()
     {
         if (instance == null)
@@ -102,6 +102,7 @@ public class UIManagers : MonoBehaviour
         StartCoroutine(StartRoutine());
         GameUI.SetActive(true);
         HomeUI.SetActive(false);
+        AnberAdioManager.Instance.ClickButton();
 
 
     }
@@ -109,24 +110,28 @@ public class UIManagers : MonoBehaviour
     {
         // StartCoroutine(RestartStartRoutine());
         SceneManager.LoadScene("MainMenu");
-      
+        AnberAdioManager.Instance.ClickButton();
+
     }
 
     public void B_Back()
     {
         PausePanel.SetActive(true);
         Time.timeScale = 0;
+        AnberAdioManager.Instance.ClickButton();
     }
 
     public void B_Back_Yes()
     {
         Time.timeScale =1;
         SceneManager.LoadScene(0);
+        AnberAdioManager.Instance.ClickButton();
     }
     public void B_Back_No()
     {
         Time.timeScale = 1;
         PausePanel.SetActive(false);
+        AnberAdioManager.Instance.ClickButton();
     }
 
     IEnumerator StartRoutine()
@@ -166,11 +171,12 @@ public class UIManagers : MonoBehaviour
     {
         if (GameManagers.instance.shotedBall == 1)
         {
+            AnberAdioManager.Instance.DoubalScoreSoundEffect();
             scoreMulitplier++;
             scoreMltiImage.SetActive(true);
           
             scoreMultiText.text = scoreMulitplier.ToString();
-            //AudioManager.Instance.AnberStartMusic();
+            
 
         }
         else
@@ -182,7 +188,7 @@ public class UIManagers : MonoBehaviour
     }
     IEnumerator RestartStartRoutine()
     {
-        clickButtonSound.Play();
+        //clickButtonSound.Play();
         ShowBlackFade();
         isRestart = true;
         yield return new WaitForSeconds(1f);
@@ -204,6 +210,7 @@ public class UIManagers : MonoBehaviour
        
         SceneManager.LoadScene("MainMenu");
         //clickButtonSound.Play();
+        AnberAdioManager.Instance.ClickButton();
 
 
     }
