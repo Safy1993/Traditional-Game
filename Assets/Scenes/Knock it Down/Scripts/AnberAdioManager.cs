@@ -61,6 +61,7 @@ public class AnberAdioManager : MonoBehaviour
         public void DoubalScoreSoundEffect()
         {
             audioSource.PlayOneShot(soundEffects[2], 0.5f);
+         
         }
       
        
@@ -75,8 +76,9 @@ public class AnberAdioManager : MonoBehaviour
         //AudioManager.Instance.GameOverSoundEffect();
 
 
-
-
+    //34354345
+    //67676
+    
 
 
     }
