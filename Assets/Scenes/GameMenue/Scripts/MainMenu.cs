@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        print(gameObject.name);
         int mute = PlayerPrefs.GetInt("Mute", 0);
         audioToggle.isOn = mute == 1;
 
