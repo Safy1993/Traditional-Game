@@ -16,6 +16,9 @@ using System;
 
 public class HandedInputSelector : MonoBehaviour
 {
+
+    public OVRCameraRig m_CameraRig_MainMenu;
+   
     public OVRCameraRig m_CameraRig_M;
     //public OVRInputModule m_InputModule_M;
 
@@ -27,11 +30,21 @@ public class HandedInputSelector : MonoBehaviour
 
     void Start()
     {
+      
+
         if (PlayerPrefs.GetInt("game", 0) == 0)
         {
-            m_CameraRig = m_CameraRig_M;// = FindObjectOfType<OVRCameraRig>();
+            m_CameraRig = m_CameraRig_MainMenu;// = FindObjectOfType<OVRCameraRig>();
             //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
         }
+
+       else if (PlayerPrefs.GetInt("game", 1) == 1)
+        {
+            m_CameraRig = m_CameraRig_M;
+            // = FindObjectOfType<OVRCameraRig>();
+            //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
+        }
+
         else
         {
             m_CameraRig = m_CameraRig_A;// = FindObjectOfType<OVRCameraRig>();

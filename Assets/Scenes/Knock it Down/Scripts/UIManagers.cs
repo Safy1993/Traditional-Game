@@ -35,6 +35,12 @@ public class UIManagers : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject congraUI;
 
+
+
+    public GameObject MainCanvas;
+    public GameObject midhrabGameObject;
+    public GameObject AnbarGameObject;
+
     public Text gearRotationText;
     //public AudioSource clickButtonSound; 
     void Awake()
@@ -72,10 +78,14 @@ public class UIManagers : MonoBehaviour
         {
             StartCoroutine(StartRoutine());
         }
+        if (Input.GetKey(KeyCode.C))
+        {
+            B_Restart();
+        }
 
         if (Input.GetKey(KeyCode.R))
         {
-            B_Restart();
+            BackToMainMenue();
         }
     }
 
@@ -109,7 +119,13 @@ public class UIManagers : MonoBehaviour
     public void B_Restart()
     {
         // StartCoroutine(RestartStartRoutine());
-        SceneManager.LoadScene("MainMenu");
+        PlayerPrefs.SetInt("game", 2);
+
+        //AnbarGameObject.SetActive(true);
+        //midhrabGameObject.SetActive(false);
+        //MainCanvas.SetActive(false);
+
+        SceneManager.LoadScene(0);
         AnberAdioManager.Instance.ClickButton();
 
     }
@@ -207,9 +223,13 @@ public class UIManagers : MonoBehaviour
     }
     public void BackToMainMenue()
     {
-       
-        SceneManager.LoadScene("MainMenu");
-        //clickButtonSound.Play();
+
+        PlayerPrefs.SetInt("game", 0);
+
+        midhrabGameObject.SetActive(false);
+        MainCanvas.SetActive(true);
+        AnbarGameObject.SetActive(false);
+    
         AnberAdioManager.Instance.ClickButton();
 
 

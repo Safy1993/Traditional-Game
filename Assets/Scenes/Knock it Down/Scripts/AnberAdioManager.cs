@@ -60,7 +60,7 @@ public class AnberAdioManager : MonoBehaviour
         //7)DoubalScore
         public void DoubalScoreSoundEffect()
         {
-            audioSource.PlayOneShot(soundEffects[3], 0.5f);
+            audioSource.PlayOneShot(soundEffects[2], 0.5f);
         }
       
        

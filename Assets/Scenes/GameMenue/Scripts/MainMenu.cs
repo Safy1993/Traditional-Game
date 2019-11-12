@@ -10,9 +10,9 @@ public class MainMenu : MonoBehaviour
     public GameObject chooseGame;
     public GameObject MainMenuGameobject;
 
-   // public GameObject MainCanvas;
- //   public GameObject midhrabGameObject;
-   // public GameObject AnbarGameObject;
+    public GameObject MainCanvas;
+    public GameObject midhrabGameObject;
+    public GameObject AnbarGameObject;
 
     void Start()
     {
@@ -38,7 +38,11 @@ public class MainMenu : MonoBehaviour
             AmperGame();
         }
 
-       
+        if (Input.GetKey(KeyCode.B))
+        {
+            BackMainMenuP();
+        }
+
 
         if (Input.GetKey(KeyCode.P))
         {
@@ -67,12 +71,33 @@ public class MainMenu : MonoBehaviour
 
     public void MathrabGame()
     {
-        PlayerPrefs.SetInt("game", 0);
+        PlayerPrefs.SetInt("game", 1);
 
-        SceneManager.LoadScene("MathrabGame");
+        midhrabGameObject.SetActive(true);
+        MainCanvas.SetActive(false);
+        AnbarGameObject.SetActive(false);
         HitButtonSound();
     }
 
+    public void BackMainMenuP()
+    {
+        PlayerPrefs.SetInt("game", 0);
+
+        midhrabGameObject.SetActive(false);
+        MainCanvas.SetActive(true);
+        AnbarGameObject.SetActive(false);
+        HitButtonSound();
+    }
+    public void AmperGame()
+    {
+        PlayerPrefs.SetInt("game", 2);
+
+        AnbarGameObject.SetActive(true);
+        midhrabGameObject.SetActive(false);
+        MainCanvas.SetActive(false);
+        HitButtonSound();
+
+    }
 
     public void backMainMenuchooseGame()
     {
@@ -83,14 +108,7 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void AmperGame()
-    {
-        PlayerPrefs.SetInt("game", 1);
-
-        SceneManager.LoadScene("MathrabGame");
-        HitButtonSound();
-
-    }
+   
 
     public void MuteSounds()
     {
