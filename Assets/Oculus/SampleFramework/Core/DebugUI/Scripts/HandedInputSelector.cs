@@ -30,26 +30,27 @@ public class HandedInputSelector : MonoBehaviour
 
     void Start()
     {
-      
 
-        if (PlayerPrefs.GetInt("game", 0) == 0)
-        {
-            m_CameraRig = m_CameraRig_MainMenu;// = FindObjectOfType<OVRCameraRig>();
-            //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
-        }
+        m_CameraRig = m_CameraRig_MainMenu;
 
-       else if (PlayerPrefs.GetInt("game", 1) == 1)
-        {
-            m_CameraRig = m_CameraRig_M;
-            // = FindObjectOfType<OVRCameraRig>();
-            //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
-        }
+       // if (PlayerPrefs.GetInt("game", 0) == 0)
+       // {
+       //    // = FindObjectOfType<OVRCameraRig>();
+       //     //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
+       // }
 
-        else
-        {
-            m_CameraRig = m_CameraRig_A;// = FindObjectOfType<OVRCameraRig>();
+       //else if (PlayerPrefs.GetInt("game", 1) == 1)
+       // {
+       //     m_CameraRig = m_CameraRig_M;
+       //     // = FindObjectOfType<OVRCameraRig>();
+       //     //m_InputModule = m_InputModule_M;//= FindObjectOfType<OVRInputModule>();
+       // }
+
+       // else
+       // {
+       //     m_CameraRig = m_CameraRig_A;// = FindObjectOfType<OVRCameraRig>();
            
-        }
+       // }
 
         m_InputModule =  FindObjectOfType<OVRInputModule>();
     }
@@ -80,4 +81,22 @@ public class HandedInputSelector : MonoBehaviour
         }
         m_InputModule.rayTransform = t;
     }
+
+    public void BackToMainMenu()
+    {
+        m_CameraRig = m_CameraRig_MainMenu;
+    }
+
+    public void StartGame(int index)
+    {
+        if (index == 0)
+        {
+            m_CameraRig = m_CameraRig_M;
+        }
+        else
+        {
+            m_CameraRig = m_CameraRig_A;
+        }
+    }
+
 }

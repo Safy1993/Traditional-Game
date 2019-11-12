@@ -91,19 +91,7 @@ public class UIMang : MonoBehaviour
         textScore.text = " Score : " + score;
     }
 
-    public void BackToMainMenue()
-    {
-        buttonClickSound.Play();
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void PlayAgainMthrapGame()
-    {
-        buttonClickSound.Play();
-        SceneManager.LoadScene("MathrabGame");
-        
-
-    }
+    
 
 
 
