@@ -7,18 +7,20 @@ using UnityEngine.UI;
 // Applies an explosion force to all nearby rigidbodies
 public class PutterForce : MonoBehaviour
 {
- 
+
     public float ballforce;
 
 
-       public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ball")
         {
             print("ball");
-           ballforce= GearController.Instance.force;
-            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
-         
+            ballforce = GearController.Instance.force;
+            //other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * ballforce);
+
+            other.GetComponent<Rigidbody>().AddForce(transform.parent.forward * 800);
+
         }
 
     }

@@ -11,13 +11,11 @@ public class GameSelector : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("game",0) == 0)
         {
-            MathrabGame.SetActive(true);
-            AmberGame.SetActive(false);
+            Instantiate(MathrabGame);
         }
         else
         {
-            MathrabGame.SetActive(false);
-            AmberGame.SetActive(true);
+            Instantiate(AmberGame);
         }
     }
 
